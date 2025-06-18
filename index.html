@@ -9,21 +9,22 @@
       font-family: 'Segoe UI', sans-serif;
       text-align: center;
       padding: 30px 15px;
-      background: #000;
+      background: linear-gradient(180deg, #000000 0%, #101e0a 100%);
       color: #aed61e;
       text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
     }
 
     img.logo {
       max-width: 250px;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
       filter: drop-shadow(0px 0px 5px #8bc34a);
     }
 
     h1 {
       margin-bottom: 20px;
-      font-size: 1.5em;
+      font-size: 1.6em;
       color: #aed61e;
+      font-weight: normal;
       text-shadow: 0 0 8px #5a9135;
     }
 
@@ -51,7 +52,7 @@
     }
 
     .qr-container {
-      margin-top: 30px;
+      margin-top: 20px;
     }
 
     #pixNumero {
@@ -64,104 +65,140 @@
       color: #aed61e;
     }
 
-    .horario {
+    .horarios {
       margin-top: 30px;
       font-size: 1.1em;
-      line-height: 1.6;
+      line-height: 1.5;
     }
 
     .galeria {
       margin-top: 40px;
-    }
-
-    .galeria h2 {
-      margin-bottom: 15px;
-      font-size: 1.6em;
-    }
-
-    .lista-vertical {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 12px;
-      padding: 0 10px;
+      gap: 15px;
+      padding: 10px;
     }
 
-    .lista-vertical img {
+    .galeria img {
       width: 90%;
       max-width: 360px;
-      height: auto;
       border-radius: 10px;
       cursor: pointer;
-      transition: transform 0.2s ease;
+      transition: transform 0.3s ease;
     }
 
-    .lista-vertical img:hover {
+    .galeria img:hover {
       transform: scale(1.03);
     }
 
-    /* Modal */
     .modal {
       display: none;
       position: fixed;
       z-index: 999;
-      left: 0; top: 0;
-      width: 100%; height: 100%;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
       background-color: rgba(0, 0, 0, 0.9);
+      justify-content: center;
+      align-items: center;
     }
 
     .modal img {
-      max-width: 90%;
-      max-height: 90%;
-      margin: 5% auto;
-      display: block;
+      max-width: 90vw;
+      max-height: 90vh;
       border-radius: 10px;
-      box-shadow: 0 0 20px #aed61e;
     }
 
     .modal:target {
-      display: block;
+      display: flex;
+    }
+
+    .close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 30px;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    /* Estilo para os botões da loja (sem borda arredondada) */
+    .download-app {
+      margin-top: 30px;
+    }
+
+    .download-app h3 {
+      color: #aed61e;
+      margin-bottom: 15px;
+    }
+
+    .store-button {
+      width: 180px;
+      margin: 10px;
+      /* Borda arredondada removida */
+      box-shadow: 0 4px 12px rgba(139, 195, 74, 0.4);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .store-button:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 6px 18px rgba(139, 195, 74, 0.6);
     }
   </style>
 </head>
 <body>
+
   <img src="logo.png" alt="Logo 2h.Fitness" class="logo" />
   <h1>Onde seus limites são superados.</h1>
 
   <a href="https://www.instagram.com/2h_fitness?igsh=aGthcmRxemNrbmh5" class="btn" target="_blank">Instagram</a>
+
   <a href="https://wa.me/5524999522320?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20serviços%20da%202h.Fitness." class="btn" target="_blank">WhatsApp</a>
+
   <a href="#" class="btn" onclick="copiarPix()">Pix</a>
 
-  <div id="pix" class="qr-container">
+  <div class="qr-container">
     <p id="msgPix"></p>
     <span id="pixNumero">24999522320</span>
   </div>
 
-  <div class="horario">
-    <strong>Horário de Funcionamento:</strong><br/>
-    Segunda a Sexta: 05:00 às 12:00 e 14:00 às 21:00<br/>
-    Sábados: 08:30 às 14:00
+  <!-- Botões para download dos apps -->
+  <div class="download-app">
+    <h3>Baixe nosso App:</h3>
+
+    <a href="https://play.google.com/store/apps/details?id=br.com.fitastic.appaluno&hl=pt_BR&pli=1" target="_blank">
+      <img src="playstore.png" alt="Baixar na Play Store" class="store-button">
+    </a>
+
+    <a href="https://apps.apple.com/br/app/next-fit/id1360859531" target="_blank">
+      <img src="appstore.png" alt="Baixar na App Store" class="store-button">
+    </a>
+  </div>
+
+  <div class="horarios">
+    <h3>Horário de Funcionamento</h3>
+    <p>Segunda a Sexta: 5h às 12h e 14h às 21h<br>Sábado: 8h30 às 14h</p>
   </div>
 
   <div class="galeria">
-    <h2>Conheça nossa estrutura</h2>
-    <div class="lista-vertical">
-      <a href="#img1"><img src="img1.jpeg" alt="Academia 1"></a>
-      <a href="#img2"><img src="img2.jpeg" alt="Academia 2"></a>
-      <a href="#img3"><img src="img3.jpeg" alt="Academia 3"></a>
-      <a href="#img4"><img src="img4.jpeg" alt="Academia 4"></a>
-      <a href="#img5"><img src="img5.jpeg" alt="Academia 5"></a>
-      <a href="#img6"><img src="img6.jpeg" alt="Academia 6"></a>
-    </div>
+    <a href="#img1"><img src="img1.jpeg" alt="Academia 1"></a>
+    <a href="#img2"><img src="img2.jpeg" alt="Academia 2"></a>
+    <a href="#img3"><img src="img3.jpeg" alt="Academia 3"></a>
+    <a href="#img4"><img src="img4.jpeg" alt="Academia 4"></a>
+    <a href="#img5"><img src="img5.jpeg" alt="Academia 5"></a>
+    <a href="#img6"><img src="img6.jpeg" alt="Academia 6"></a>
   </div>
 
   <!-- Modais -->
-  <div id="img1" class="modal" onclick="location.href='#'"><img src="img1.jpeg" alt=""></div>
-  <div id="img2" class="modal" onclick="location.href='#'"><img src="img2.jpeg" alt=""></div>
-  <div id="img3" class="modal" onclick="location.href='#'"><img src="img3.jpeg" alt=""></div>
-  <div id="img4" class="modal" onclick="location.href='#'"><img src="img4.jpeg" alt=""></div>
-  <div id="img5" class="modal" onclick="location.href='#'"><img src="img5.jpeg" alt=""></div>
-  <div id="img6" class="modal" onclick="location.href='#'"><img src="img6.jpeg" alt=""></div>
+  <div id="img1" class="modal"><a href="#" class="close">&times;</a><img src="img1.jpeg" /></div>
+  <div id="img2" class="modal"><a href="#" class="close">&times;</a><img src="img2.jpeg" /></div>
+  <div id="img3" class="modal"><a href="#" class="close">&times;</a><img src="img3.jpeg" /></div>
+  <div id="img4" class="modal"><a href="#" class="close">&times;</a><img src="img4.jpeg" /></div>
+  <div id="img5" class="modal"><a href="#" class="close">&times;</a><img src="img5.jpeg" /></div>
+  <div id="img6" class="modal"><a href="#" class="close">&times;</a><img src="img6.jpeg" /></div>
 
   <script>
     function copiarPix() {
@@ -173,5 +210,6 @@
       });
     }
   </script>
+
 </body>
 </html>
