@@ -6,45 +6,62 @@
   <title>2h.Fitness - Cartão de Visita</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', sans-serif;
       text-align: center;
       padding: 30px 15px;
       background: #000;
-      color: #b3ff00;
+      color: #8bc34a;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
     }
+
     img.logo {
-      max-width: 300px;
+      max-width: 250px;
       margin-bottom: 20px;
+      filter: drop-shadow(0px 0px 5px #8bc34a);
     }
+
     h1 {
       margin-bottom: 20px;
-      font-size: 2em;
-      color: #b3ff00;
+      font-size: 2.2em;
+      color: #8bc34a;
+      text-shadow: 0 0 8px #5a9135;
     }
+
     .btn {
       display: block;
       margin: 15px auto;
-      padding: 15px 25px;
+      padding: 16px 28px;
       border: none;
-      border-radius: 12px;
+      border-radius: 20px;
       font-size: 18px;
       font-weight: bold;
-      background-color: #b3ff00;
+      background-color: #8bc34a;
       color: #000;
       text-decoration: none;
-      width: 80%;
-      max-width: 320px;
-      transition: background 0.3s ease;
+      width: 85%;
+      max-width: 340px;
+      box-shadow: 0 4px 12px rgba(139, 195, 74, 0.4);
+      transition: all 0.3s ease;
     }
+
     .btn:hover {
-      filter: brightness(0.9);
+      background-color: #a8e063;
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 6px 18px rgba(139, 195, 74, 0.6);
     }
+
     .qr-container {
       margin-top: 30px;
     }
-    .qr-container img {
-      max-width: 300px;
-      border-radius: 10px;
+
+    #pixNumero {
+      display: none;
+    }
+
+    #msgPix {
+      margin-top: 10px;
+      font-size: 1rem;
+      color: #8bc34a;
     }
   </style>
 </head>
@@ -56,11 +73,22 @@
 
   <a href="https://wa.me/5524999522320?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20serviços%20da%202h.Fitness." class="btn" target="_blank">WhatsApp</a>
 
-  <a href="#pix" class="btn">Pix</a>
+  <a href="#" class="btn" onclick="copiarPix()">Pix</a>
 
   <div id="pix" class="qr-container">
-    <p>Chave Pix: <strong>24 99952-2320</strong></p>
-    <img src="qrcode-pix.png" alt="QR Code Pix">
+    <p id="msgPix"></p>
+    <span id="pixNumero">24999522320</span>
   </div>
+
+  <script>
+    function copiarPix() {
+      const numeroPix = document.getElementById("pixNumero").innerText;
+      navigator.clipboard.writeText(numeroPix).then(() => {
+        document.getElementById("msgPix").innerHTML = "📋 Chave Pix copiada com sucesso!";
+      }).catch(err => {
+        document.getElementById("msgPix").innerHTML = "Erro ao copiar Pix 😢";
+      });
+    }
+  </script>
 </body>
 </html>
