@@ -10,48 +10,52 @@
       text-align: center;
       padding: 30px 15px;
       background: linear-gradient(180deg, #000000 0%, #101e0a 100%);
-      color: #aed61e;
-      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+      color: white;
     }
 
     img.logo {
-      max-width: 250px;
-      filter: drop-shadow(0px 0px 5px #8bc34a);
+      max-width: 240px;
+      filter: drop-shadow(0px 0px 8px #aed61e);
+    }
+
+    h1, h3 {
+      color: #aed61e;
+      text-shadow: 0 0 6px rgba(174, 214, 30, 0.7);
     }
 
     h1 {
-      margin-bottom: 40px;
-      font-size: 1.6em;
-      color: #aed61e;
-      font-weight: small;
-      text-shadow: 0 0 8px #5a9135;
+      font-size: 1.8em;
+    }
+
+    h3 {
+      font-size: 1.4em;
     }
 
     .btn {
       display: block;
       margin: 15px auto;
       padding: 16px 28px;
-      border: none;
-      border-radius: 20px;
+      border: 2px solid #aed61e;
+      border-radius: 10px;
       font-size: 18px;
       font-weight: bold;
-      background-color: #aed61e;
-      color: #000;
+      background-color: transparent;
+      color: #aed61e;
       text-decoration: none;
       width: 85%;
       max-width: 340px;
-      box-shadow: 0 4px 12px rgba(139, 195, 74, 0.4);
       transition: all 0.3s ease;
     }
 
     .btn:hover {
-      background-color: #a8e063;
+      background-color: #aed61e;
+      color: #000;
       transform: translateY(-2px) scale(1.02);
-      box-shadow: 0 6px 18px rgba(139, 195, 74, 0.6);
+      box-shadow: 0 4px 15px rgba(174, 214, 30, 0.6);
     }
 
     .qr-container {
-      margin-top: 20px;
+      margin-top: 1px;
     }
 
     #pixNumero {
@@ -59,32 +63,66 @@
     }
 
     #msgPix {
-      margin-top: 10px;
       font-size: 1rem;
       color: #aed61e;
     }
 
-    .horarios {
-      margin-top: 30px;
+    .horarios p {
+      margin: 5px 0;
       font-size: 1.1em;
       line-height: 1.5;
+      color: white;
+    }
+
+    .app-links {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .app-links a {
+      margin: 10px 0;
+    }
+
+    .app-links img.store-btn {
+      height: 55px;
+      transition: transform 0.3s ease;
+      filter: drop-shadow(0px 0px 6px rgba(174, 214, 30, 0.6));
+    }
+
+    .app-links img.store-btn:hover {
+      transform: scale(1.08);
+    }
+
+    .mapa-container {
+      margin: 40px auto 0;
+      width: 90%;
+      max-width: 500px;
+      text-align: center;
+    }
+
+    .mapa-container iframe {
+      border: 0;
+      border-radius: 12px;
+      width: 100%;
+      height: 300px;
     }
 
     .galeria {
-      margin-top: 40px;
+      margin-top: 15px;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 15px;
-      padding: 10px;
     }
 
     .galeria img {
       width: 90%;
       max-width: 360px;
-      border-radius: 10px;
+      border-radius: 12px;
       cursor: pointer;
       transition: transform 0.3s ease;
+      box-shadow: 0 4px 12px rgba(174, 214, 30, 0.3);
     }
 
     .galeria img:hover {
@@ -99,7 +137,7 @@
       top: 0;
       width: 100vw;
       height: 100vh;
-      background-color: rgba(0, 0, 0, 0.9);
+      background-color: rgba(0, 0, 0, 0.95);
       justify-content: center;
       align-items: center;
     }
@@ -107,7 +145,7 @@
     .modal img {
       max-width: 90vw;
       max-height: 90vh;
-      border-radius: 10px;
+      border-radius: 12px;
     }
 
     .modal:target {
@@ -118,71 +156,53 @@
       position: absolute;
       top: 20px;
       right: 30px;
-      font-size: 30px;
-      color: #fff;
+      font-size: 32px;
+      color: white;
       text-decoration: none;
-    }
-
-    /* Estilo para os botões da loja (sem borda arredondada) */
-    .download-app {
-      margin-top: 30px;
-    }
-
-    .download-app h3 {
-      color: #aed61e;
-      margin-bottom: 15px;
-    }
-
-    .store-button {
-      width: 180px;
-      margin: 10px;
-      /* Borda arredondada removida */
-      box-shadow: 0 4px 12px rgba(139, 195, 74, 0.4);
-      transition: all 0.3s ease;
-      cursor: pointer;
-    }
-
-    .store-button:hover {
-      transform: translateY(-3px) scale(1.03);
-      box-shadow: 0 6px 18px rgba(139, 195, 74, 0.6);
     }
   </style>
 </head>
 <body>
 
   <img src="logo.png" alt="Logo 2h.Fitness" class="logo" />
-  <h1>ONDE SEUS LIMITES SÃO SUPERADOS</h1>
-
+  
   <a href="https://www.instagram.com/2h_fitness?igsh=aGthcmRxemNrbmh5" class="btn" target="_blank">Instagram</a>
 
   <a href="https://wa.me/5524999522320?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20serviços%20da%202h.Fitness." class="btn" target="_blank">WhatsApp</a>
 
-  <a href="#" class="btn" onclick="copiarPix()">Pix</a>
+  <a href="#" class="btn" onclick="copiarPix()">Copiar chave PIX</a>
 
   <div class="qr-container">
     <p id="msgPix"></p>
-    <span id="pixNumero">00020126360014BR.GOV.BCB.PIX0114+55249995223205204000053039865802BR5925Huila Machado de Lima Rib6009SAO PAULO62140510sm9hLC3XlL63047C8E</span>
-  </div>
-
-  <!-- Botões para download dos apps -->
-  <div class="download-app">
-    <h3>Baixe nosso App:</h3>
-
-    <a href="https://play.google.com/store/apps/details?id=br.com.fitastic.appaluno&hl=pt_BR&pli=1" target="_blank">
-      <img src="playstore.png" alt="Baixar na Play Store" class="store-button">
-    </a>
-
-    <a href="https://apps.apple.com/br/app/next-fit/id1360859531" target="_blank">
-      <img src="appstore.png" alt="Baixar na App Store" class="store-button">
-    </a>
+    <span id="pixNumero">24999522320</span>
   </div>
 
   <div class="horarios">
-    <h3>Horário de Funcionamento:</h3>
-    <p>Segunda a Sexta: 5h às 12h e 14h às 21h<br>Sábado: 8h30 às 14h</p>
+    <h3>Horário de Funcionamento</h3>
+    <p><u>Segunda a Sexta:</u><br>5h às 12h e 14h às 21h</p>
+    <p><u>Sábado:</u><br>8h30 às 14h</p>
   </div>
 
+  <div class="app-links">
+    <h3>Baixe nosso app:</h3>
+    <a href="https://play.google.com/store/apps/details?id=br.com.fitastic.appaluno&hl=pt_BR&pli=1" target="_blank">
+      <img src="playstore.png" alt="Baixar no Google Play" class="store-btn" />
+    </a>
+    <a href="https://apps.apple.com/br/app/next-fit/id1360859531" target="_blank">
+      <img src="appstore.png" alt="Baixar na App Store" class="store-btn" />
+    </a>
+  </div>
+
+  <div class="mapa-container">
+    <h3>Localização</h3>
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3675.628287102922!2d-43.88118462572556!3d-22.89169013785696!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9970bc2906ebf7%3A0x8c0628dc72a87d26!2sR.%20Teodora%20Barbosa%20Ribeiro%2C%20367%20-%20Arrozal%2C%20Pira%C3%AD%20-%20RJ%2C%2027185-000!5e0!3m2!1spt-BR!2sbr!4v1718797795602!5m2!1spt-BR!2sbr"
+      allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </div>
+	
   <div class="galeria">
+    <h3>Conheça nosso espaço</h3>
     <a href="#img1"><img src="img1.jpeg" alt="Academia 1"></a>
     <a href="#img2"><img src="img2.jpeg" alt="Academia 2"></a>
     <a href="#img3"><img src="img3.jpeg" alt="Academia 3"></a>
@@ -203,7 +223,7 @@
     function copiarPix() {
       const numeroPix = document.getElementById("pixNumero").innerText;
       navigator.clipboard.writeText(numeroPix).then(() => {
-        document.getElementById("msgPix").innerHTML = "📋 Chave Pix copiada com sucesso!";
+        document.getElementById("msgPix").innerHTML = "Chave Pix copiada com sucesso!";
       }).catch(err => {
         document.getElementById("msgPix").innerHTML = "Erro ao copiar Pix 😢";
       });
