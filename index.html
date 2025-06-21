@@ -1,25 +1,35 @@
-<!DOCTYPE html>More actions
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>2h.Fitness - Cartão de Visita</title>
   <style>
+    .fundo-fixo {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: 
+        linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.9)),
+        url('fundo.JPG') no-repeat center center;
+      background-size: cover;
+      z-index: -1;
+    }
+
     body {
       font-family: 'Segoe UI', sans-serif;
       text-align: center;
       padding: 30px 15px;
-      background: linear-gradient(180deg, #000000 0%, #101e0a 100%);
-      background: 
-        linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)),
-        url('fundo.JPG') no-repeat center center fixed;
-      background-size: cover;
       color: white;
+      position: relative;
+      z-index: 1;
     }
 
     img.logo {
       max-width: 240px;
-      filter: drop-shadow(0px 0px 8px #aed61e);
+      filter: drop-shadow(0px 0px 10px #aed61e);
     }
 
     h1, h3 {
@@ -39,23 +49,31 @@
       display: block;
       margin: 15px auto;
       padding: 16px 28px;
-      border: 2px solid #aed61e;
-      border-radius: 10px;
+      border: none;
+      border-radius: 12px;
       font-size: 18px;
       font-weight: bold;
-      background-color: transparent;
-      color: #aed61e;
+      color: #fff;
       text-decoration: none;
       width: 85%;
       max-width: 340px;
-      transition: all 0.3s ease;
+      background: linear-gradient(145deg, #33c000, #6fd100, #aed61e, #d7f864);
+      box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.4),
+        0 4px 8px rgba(0, 0, 0, 0.3),
+        inset 0 2px 4px rgba(255, 255, 255, 0.3),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.4);
+      transition: all 0.2s ease;
+      cursor: pointer;
     }
 
-    .btn:hover {
-      background-color: #aed61e;
-      color: #000;
-      transform: translateY(-2px) scale(1.02);
-      box-shadow: 0 4px 15px rgba(174, 214, 30, 0.6);
+    .btn.ativo {
+      transform: translateY(-4px) scale(0.96);
+      box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.5),
+        0 2px 6px rgba(0, 0, 0, 0.35),
+        inset 0 1px 2px rgba(255, 255, 255, 0.4),
+        inset 0 -1px 2px rgba(0, 0, 0, 0.5);
     }
 
     .qr-container {
@@ -110,6 +128,7 @@
       border-radius: 12px;
       width: 100%;
       height: 300px;
+      display: none;
     }
 
     .galeria {
@@ -168,30 +187,36 @@
 </head>
 <body>
 
+  <div class="fundo-fixo"></div>
+
   <img src="logo.png" alt="Logo 2h.Fitness" class="logo" />
-
-  <a href="https://www.instagram.com/2h_fitness?igsh=aGthcmRxemNrbmh5" class="btn" target="_blank">Instagram</a>
-
+  
+  <a href="https://www.instagram.com/2h_fitness" class="btn" target="_blank">Instagram</a>
   <a href="https://wa.me/5524999522320?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20serviços%20da%202h.Fitness." class="btn" target="_blank">WhatsApp</a>
-
   <a href="#" class="btn" onclick="copiarPix()">Copiar chave PIX</a>
+  <a href="#" class="btn" onclick="toggleMapa()" id="botaoMapa">Localização</a>
 
   <div class="qr-container">
     <p id="msgPix"></p>
     <span id="pixNumero">24999522320</span>
   </div>
 
+  <div class="mapa-container">
+    <iframe id="meuMapa"
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3675.628287102922!2d-43.88118462572556!3d-22.89169013785696!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9970bc2906ebf7%3A0x8c0628dc72a87d26!2sR.%20Teodora%20Barbosa%20Ribeiro%2C%20367%20-%20Arrozal%2C%20Pira%C3%AD%20-%20RJ%2C%2027185-000!5e0!3m2!1spt-BR!2sbr!4v1718797795602!5m2!1spt-BR!2sbr"
+      allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </div>
+
   <div class="horarios">
     <h3>Horário de Funcionamento</h3>
     <p><u>Segunda a Sexta:</u><br>5h às 12h e 14h às 21h</p>
     <p><u>Sábado:</u><br>8h30 às 14h</p>
-    <p><strong>Segunda a Sexta:</strong><br>5h às 12h e 14h às 21h</p>
-    <p><strong>Sábado:</strong><br>8h30 às 14h</p>
   </div>
 
   <div class="app-links">
     <h3>Baixe nosso app:</h3>
-    <a href="https://play.google.com/store/apps/details?id=br.com.fitastic.appaluno&hl=pt_BR&pli=1" target="_blank">
+    <a href="https://play.google.com/store/apps/details?id=br.com.fitastic.appaluno" target="_blank">
       <img src="playstore.png" alt="Baixar no Google Play" class="store-btn" />
     </a>
     <a href="https://apps.apple.com/br/app/next-fit/id1360859531" target="_blank">
@@ -199,15 +224,6 @@
     </a>
   </div>
 
-  <div class="mapa-container">
-    <h3>Localização</h3>
-    <iframe
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3675.628287102922!2d-43.88118462572556!3d-22.89169013785696!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9970bc2906ebf7%3A0x8c0628dc72a87d26!2sR.%20Teodora%20Barbosa%20Ribeiro%2C%20367%20-%20Arrozal%2C%20Pira%C3%AD%20-%20RJ%2C%2027185-000!5e0!3m2!1spt-BR!2sbr!4v1718797795602!5m2!1spt-BR!2sbr"
-      allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-    </iframe>
-  </div>
-	
-  
   <div class="galeria">
     <h3>Conheça nosso espaço</h3>
     <a href="#img1"><img src="img1.jpeg" alt="Academia 1"></a>
@@ -227,16 +243,52 @@
   <div id="img6" class="modal"><a href="#" class="close">&times;</a><img src="img6.jpeg" /></div>
 
   <script>
+    // Efeito de clique nos botões
+    const botoes = document.querySelectorAll('.btn');
+
+    botoes.forEach(botao => {
+      botao.addEventListener('mousedown', () => {
+        botao.classList.add('ativo');
+      });
+      botao.addEventListener('touchstart', () => {
+        botao.classList.add('ativo');
+      });
+
+      botao.addEventListener('mouseup', () => {
+        botao.classList.remove('ativo');
+      });
+      botao.addEventListener('mouseleave', () => {
+        botao.classList.remove('ativo');
+      });
+      botao.addEventListener('touchend', () => {
+        botao.classList.remove('ativo');
+      });
+      botao.addEventListener('touchcancel', () => {
+        botao.classList.remove('ativo');
+      });
+    });
+
     function copiarPix() {
       const numeroPix = document.getElementById("pixNumero").innerText;
       navigator.clipboard.writeText(numeroPix).then(() => {
         document.getElementById("msgPix").innerHTML = "Chave Pix copiada com sucesso!";
       }).catch(err => {
-        document.getElementById("msgPix").innerHTML = "Erro ao copiar Pix 😢";
         document.getElementById("msgPix").innerHTML = "Erro ao copiar Pix";
       });
     }
+
+    function toggleMapa() {
+      const mapa = document.getElementById("meuMapa");
+      const botao = document.getElementById("botaoMapa");
+      if (mapa.style.display === "block") {
+        mapa.style.display = "none";
+        botao.innerText = "Localização";
+      } else {
+        mapa.style.display = "block";
+        botao.innerText = "Ocultar Localização";
+      }
+    }
   </script>
 
-</body>More actions
+</body>
 </html>
