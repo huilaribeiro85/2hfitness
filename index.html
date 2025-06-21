@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>2h.Fitness - Cartão de Visita</title>
   <style>
-    /* Fundo fixo */
     .fundo-fixo {
       position: fixed;
       top: 0;
@@ -31,13 +30,6 @@
     img.logo {
       max-width: 240px;
       filter: drop-shadow(0px 0px 8px #aed61e);
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1);}
-      50% { transform: scale(1.05);}
-      100% { transform: scale(1);}
     }
 
     .btn {
@@ -143,26 +135,36 @@
     }
 
     .modal img {
-      max-width: 90vw;
-      max-height: 80vh;
+      width: 90%;
+      max-width: 400px;
+      max-height: 70vh;
       border-radius: 12px;
+      object-fit: contain;
     }
 
     .modal p {
       color: white;
       margin-top: 15px;
       font-size: 1.1em;
+      max-width: 90%;
+      text-align: center;
     }
 
-    .modal:target {display: flex;}
+    .modal:target {
+      display: flex;
+    }
 
     .close {
       position: absolute;
-      top: 20px;
-      right: 30px;
+      top: 15px;
+      right: 15px;
       font-size: 32px;
       color: white;
       text-decoration: none;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 4px 10px;
+      border-radius: 50%;
+      box-shadow: 0 0 10px rgba(255,255,255,0.4);
     }
 
     footer {
@@ -233,7 +235,7 @@
     <a href="#img6"><img src="img6.jpeg" alt="Academia 6"></a>
   </div>
 
-  <!-- Modais de Galeria -->
+  <!-- Modais da Galeria -->
   <div id="img1" class="modal"><a href="#" class="close">&times;</a><img src="img1.jpeg" /></div>
   <div id="img2" class="modal"><a href="#" class="close">&times;</a><img src="img2.jpeg" /></div>
   <div id="img3" class="modal"><a href="#" class="close">&times;</a><img src="img3.jpeg" /></div>
