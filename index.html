@@ -1,31 +1,20 @@
-<!DOCTYPE html>
+<!DOCTYPE html>More actions
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>2h.Fitness - Cartão de Visita</title>
   <style>
-    /* Fundo fixo para funcionar no mobile */
-    .fundo-fixo {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: 
-        linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.9)),
-        url('fundo.JPG') no-repeat center center;
-      background-size: cover;
-      z-index: -1;
-    }
-
     body {
       font-family: 'Segoe UI', sans-serif;
       text-align: center;
       padding: 30px 15px;
+      background: linear-gradient(180deg, #000000 0%, #101e0a 100%);
+      background: 
+        linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)),
+        url('fundo.JPG') no-repeat center center fixed;
+      background-size: cover;
       color: white;
-      position: relative;
-      z-index: 1;
     }
 
     img.logo {
@@ -179,12 +168,8 @@
 </head>
 <body>
 
-  <!-- Fundo fixo (imagem) -->
-  <div class="fundo-fixo"></div>
-
-  <!-- Conteúdo principal -->
   <img src="logo.png" alt="Logo 2h.Fitness" class="logo" />
-  
+
   <a href="https://www.instagram.com/2h_fitness?igsh=aGthcmRxemNrbmh5" class="btn" target="_blank">Instagram</a>
 
   <a href="https://wa.me/5524999522320?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20serviços%20da%202h.Fitness." class="btn" target="_blank">WhatsApp</a>
@@ -200,6 +185,8 @@
     <h3>Horário de Funcionamento</h3>
     <p><u>Segunda a Sexta:</u><br>5h às 12h e 14h às 21h</p>
     <p><u>Sábado:</u><br>8h30 às 14h</p>
+    <p><strong>Segunda a Sexta:</strong><br>5h às 12h e 14h às 21h</p>
+    <p><strong>Sábado:</strong><br>8h30 às 14h</p>
   </div>
 
   <div class="app-links">
@@ -219,7 +206,8 @@
       allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
     </iframe>
   </div>
-
+	
+  
   <div class="galeria">
     <h3>Conheça nosso espaço</h3>
     <a href="#img1"><img src="img1.jpeg" alt="Academia 1"></a>
@@ -244,10 +232,11 @@
       navigator.clipboard.writeText(numeroPix).then(() => {
         document.getElementById("msgPix").innerHTML = "Chave Pix copiada com sucesso!";
       }).catch(err => {
+        document.getElementById("msgPix").innerHTML = "Erro ao copiar Pix 😢";
         document.getElementById("msgPix").innerHTML = "Erro ao copiar Pix";
       });
     }
   </script>
 
-</body>
+</body>More actions
 </html>
