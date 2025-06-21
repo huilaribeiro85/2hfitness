@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>2h.Fitness - Cartão de Visita</title>
   <style>
-    /* Fundo fixo para funcionar no mobile */
+    /* Fundo fixo */
     .fundo-fixo {
       position: fixed;
       top: 0;
@@ -31,19 +31,13 @@
     img.logo {
       max-width: 240px;
       filter: drop-shadow(0px 0px 8px #aed61e);
+      animation: pulse 2s infinite;
     }
 
-    h1, h3 {
-      color: #aed61e;
-      text-shadow: 0 0 6px rgba(174, 214, 30, 0.7);
-    }
-
-    h1 {
-      font-size: 1.8em;
-    }
-
-    h3 {
-      font-size: 1.4em;
+    @keyframes pulse {
+      0% { transform: scale(1);}
+      50% { transform: scale(1.05);}
+      100% { transform: scale(1);}
     }
 
     .btn {
@@ -60,33 +54,24 @@
       width: 85%;
       max-width: 340px;
       transition: all 0.3s ease;
+      box-shadow: 0 0 8px rgba(174, 214, 30, 0.4);
     }
 
     .btn:hover {
       background-color: #aed61e;
       color: #000;
-      transform: translateY(-2px) scale(1.02);
-      box-shadow: 0 4px 15px rgba(174, 214, 30, 0.6);
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 0 20px rgba(174, 214, 30, 0.8);
     }
 
-    .qr-container {
-      margin-top: 1px;
-    }
-
-    #pixNumero {
-      display: none;
-    }
-
-    #msgPix {
-      font-size: 1rem;
-      color: #aed61e;
-    }
+    .qr-container {margin-top: 1px;}
+    #pixNumero {display: none;}
+    #msgPix {font-size: 1rem; color: #aed61e;}
 
     .horarios p {
       margin: 5px 0;
       font-size: 1.1em;
       line-height: 1.5;
-      color: white;
     }
 
     .app-links {
@@ -95,9 +80,7 @@
       align-items: center;
     }
 
-    .app-links a {
-      margin: 10px 0;
-    }
+    .app-links a {margin: 10px 0;}
 
     .app-links img.store-btn {
       height: 55px;
@@ -136,12 +119,12 @@
       max-width: 360px;
       border-radius: 12px;
       cursor: pointer;
-      transition: transform 0.3s ease;
+      transition: transform 0.4s ease;
       box-shadow: 0 4px 12px rgba(174, 214, 30, 0.3);
     }
 
     .galeria img:hover {
-      transform: scale(1.03);
+      transform: scale(1.05);
     }
 
     .modal {
@@ -155,17 +138,23 @@
       background-color: rgba(0, 0, 0, 0.95);
       justify-content: center;
       align-items: center;
+      flex-direction: column;
+      padding: 20px;
     }
 
     .modal img {
       max-width: 90vw;
-      max-height: 90vh;
+      max-height: 80vh;
       border-radius: 12px;
     }
 
-    .modal:target {
-      display: flex;
+    .modal p {
+      color: white;
+      margin-top: 15px;
+      font-size: 1.1em;
     }
+
+    .modal:target {display: flex;}
 
     .close {
       position: absolute;
@@ -175,26 +164,36 @@
       color: white;
       text-decoration: none;
     }
+
+    footer {
+      margin-top: 40px;
+      color: #888;
+      font-size: 0.9em;
+    }
   </style>
 </head>
+
 <body>
 
-  <!-- Fundo fixo (imagem) -->
   <div class="fundo-fixo"></div>
 
-  <!-- Conteúdo principal -->
   <img src="logo.png" alt="Logo 2h.Fitness" class="logo" />
-  
-  <a href="https://www.instagram.com/2h_fitness?igsh=aGthcmRxemNrbmh5" class="btn" target="_blank">Instagram</a>
 
-  <a href="https://wa.me/5524999522320?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20serviços%20da%202h.Fitness." class="btn" target="_blank">WhatsApp</a>
-
+  <a href="https://www.instagram.com/2h_fitness" class="btn" target="_blank">Instagram</a>
+  <a href="https://wa.me/5524999522320" class="btn" target="_blank">WhatsApp</a>
   <a href="#" class="btn" onclick="copiarPix()">Copiar chave PIX</a>
 
   <div class="qr-container">
     <p id="msgPix"></p>
     <span id="pixNumero">24999522320</span>
   </div>
+
+  <a href="https://calendar.google.com/calendar/u/0/r/eventedit?text=Treino+2h.Fitness&location=Rua+Teodora+Barbosa+Ribeiro,+367+-+Arrozal,+Piraí+-+RJ&details=Treino+na+2h.Fitness.+Vamos+treinar!&dates=20250624T100000Z/20250624T110000Z" 
+     target="_blank" class="btn">
+     🗓️ Agendar meus treinos
+  </a>
+
+  <a href="#wifi" class="btn">📶 Conectar no Wi-Fi</a>
 
   <div class="horarios">
     <h3>Horário de Funcionamento</h3>
@@ -204,7 +203,7 @@
 
   <div class="app-links">
     <h3>Baixe nosso app:</h3>
-    <a href="https://play.google.com/store/apps/details?id=br.com.fitastic.appaluno&hl=pt_BR&pli=1" target="_blank">
+    <a href="https://play.google.com/store/apps/details?id=br.com.fitastic.appaluno" target="_blank">
       <img src="playstore.png" alt="Baixar no Google Play" class="store-btn" />
     </a>
     <a href="https://apps.apple.com/br/app/next-fit/id1360859531" target="_blank">
@@ -214,9 +213,13 @@
 
   <div class="mapa-container">
     <h3>Localização</h3>
-    <iframe
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3675.628287102922!2d-43.88118462572556!3d-22.89169013785696!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9970bc2906ebf7%3A0x8c0628dc72a87d26!2sR.%20Teodora%20Barbosa%20Ribeiro%2C%20367%20-%20Arrozal%2C%20Pira%C3%AD%20-%20RJ%2C%2027185-000!5e0!3m2!1spt-BR!2sbr!4v1718797795602!5m2!1spt-BR!2sbr"
-      allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+    <iframe 
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3675.628287102922!2d-43.88118462572556!3d-22.89169013785696!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9970bc2906ebf7%3A0x8c0628dc72a87d26!2sR.%20Teodora%20Barbosa%20Ribeiro%2C%20367%20-%20Arrozal%2C%20Pira%C3%AD%20-%20RJ!5e0!3m2!1spt-BR!2sbr!4v1718797795602!5m2!1spt-BR!2sbr" 
+      width="100%" 
+      height="300" 
+      style="border:0; border-radius:12px;" 
+      allowfullscreen 
+      loading="lazy">
     </iframe>
   </div>
 
@@ -230,7 +233,7 @@
     <a href="#img6"><img src="img6.jpeg" alt="Academia 6"></a>
   </div>
 
-  <!-- Modais -->
+  <!-- Modais de Galeria -->
   <div id="img1" class="modal"><a href="#" class="close">&times;</a><img src="img1.jpeg" /></div>
   <div id="img2" class="modal"><a href="#" class="close">&times;</a><img src="img2.jpeg" /></div>
   <div id="img3" class="modal"><a href="#" class="close">&times;</a><img src="img3.jpeg" /></div>
@@ -238,12 +241,23 @@
   <div id="img5" class="modal"><a href="#" class="close">&times;</a><img src="img5.jpeg" /></div>
   <div id="img6" class="modal"><a href="#" class="close">&times;</a><img src="img6.jpeg" /></div>
 
+  <!-- Modal do Wi-Fi -->
+  <div id="wifi" class="modal">
+    <a href="#" class="close">&times;</a>
+    <img src="wifiqr.jpg" alt="QR Code Wi-Fi">
+    <p>Escaneie para conectar-se ao Wi-Fi da academia</p>
+  </div>
+
+  <footer>
+    © 2025 2h.Fitness - Todos os direitos reservados
+  </footer>
+
   <script>
     function copiarPix() {
       const numeroPix = document.getElementById("pixNumero").innerText;
       navigator.clipboard.writeText(numeroPix).then(() => {
         document.getElementById("msgPix").innerHTML = "Chave Pix copiada com sucesso!";
-      }).catch(err => {
+      }).catch(() => {
         document.getElementById("msgPix").innerHTML = "Erro ao copiar Pix";
       });
     }
