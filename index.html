@@ -21,7 +21,7 @@
     body {
       font-family: 'Segoe UI', sans-serif;
       text-align: center;
-      padding: 1px 15px;
+      padding: 0px 15px;
       color: white;
       position: relative;
       z-index: 1;
@@ -78,7 +78,7 @@
     }
 
     .qr-container {
-      margin-top: 1px;
+      margin-top: 0px;
     }
 
     #pixNumero {
@@ -91,7 +91,7 @@
     }
 
     .horarios p {
-      margin: 1px 0;
+      margin: 0px;
       font-size: 1.1em;
       line-height: 1.5;
       color: white;
@@ -118,7 +118,7 @@
     }
 
     .mapa-container {
-      margin: 40px auto 0;
+      margin: 0px auto 0;
       width: 90%;
       max-width: 500px;
       text-align: center;
@@ -193,23 +193,29 @@
   <img src="logo.png" alt="Logo 2h.Fitness" class="logo" />
   
   <a href="https://www.instagram.com/2h_fitness" class="btn" target="_blank">Instagram</a>
-  <a href="https://wa.me/5524999522320?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20serviços%20da%202h.Fitness." class="btn" target="_blank">WhatsApp</a>
   <a href="#" class="btn" onclick="copiarPix()">Copiar chave PIX</a>
-  <a href="#" class="btn" onclick="toggleMapa()" id="botaoMapa">Localização</a>
-
+  
   <div class="qr-container">
     <p id="msgPix"></p>
-    <span id="pixNumero">24999522320</span>
+    <span id="pixNumero">90349174-bd4e-4791-9580-ef12d35f621d</span>
   </div>
-
+  
+  <a href="#" class="btn" onclick="toggleMapa()" id="botaoMapa">Localização</a>
   <div class="mapa-container">
     <iframe id="meuMapa"
       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3675.628287102922!2d-43.88118462572556!3d-22.89169013785696!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9970bc2906ebf7%3A0x8c0628dc72a87d26!2sR.%20Teodora%20Barbosa%20Ribeiro%2C%20367%20-%20Arrozal%2C%20Pira%C3%AD%20-%20RJ%2C%2027185-000!5e0!3m2!1spt-BR!2sbr!4v1718797795602!5m2!1spt-BR!2sbr"
       allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
     </iframe>
   </div>
+  <a href="#" class="btn" onclick="toggleWifi()" id="botaoWifi">Wi-Fi</a>
 
-  <h3>Horário de funcionamento</h3>
+  <div class="mapa-container" id="wifiContainer" style="display: none;">
+    <img src="qr_wifi_pb.jpg" alt="QR Code Wi-Fi" style="width: 100%; max-width: 300px; border-radius: 12px; box-shadow: 0 4px 12px rgba(174, 214, 30, 0.4);">
+    <p>Escaneie o QR Code para conectar na nossa rede Wi-Fi.</p>
+  </div>
+  <a href="https://wa.me/5524999522320?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20serviços%20da%202h.Fitness." class="btn" target="_blank">Fale Conosco</a>
+	
+  <h3>Horário de funcionamento:</h3>
 
   <div class="horarios">
     <p><b>Segunda a Sexta:</b><br>5h às 12h | 14h às 21h</p>
@@ -226,14 +232,14 @@
     </a>
   </div>
 
-  <h3>Conheça nosso espaço</h3>
+  <h3>Conheça nosso espaço:</h3>
   <div class="galeria">
     <a href="#img1"><img src="img1.jpeg" alt="Academia 1"></a>
     <a href="#img2"><img src="img2.jpeg" alt="Academia 2"></a>
     <a href="#img3"><img src="img3.jpeg" alt="Academia 3"></a>
-    <a href="#img4"><img src="img4.jpeg" alt="Academia 4"></a>
     <a href="#img5"><img src="img5.jpeg" alt="Academia 5"></a>
-    <a href="#img6"><img src="img6.jpeg" alt="Academia 6"></a>
+	<a href="#img4"><img src="img4.jpeg" alt="Academia 4"></a>
+	<a href="#img6"><img src="img6.jpeg" alt="Academia 6"></a>
   </div>
 
   <!-- Modais -->
@@ -278,6 +284,18 @@
         document.getElementById("msgPix").innerHTML = "Erro ao copiar Pix";
       });
     }
+
+	function toggleWifi() {
+	  const wifi = document.getElementById("wifiContainer");
+	  const botao = document.getElementById("botaoWifi");
+	  if (wifi.style.display === "block") {
+		wifi.style.display = "none";
+		botao.innerText = "Wi-Fi";
+	  } else {
+		wifi.style.display = "block";
+		botao.innerText = "Ocultar Wi-Fi";
+	  }
+	}
 
     function toggleMapa() {
       const mapa = document.getElementById("meuMapa");
