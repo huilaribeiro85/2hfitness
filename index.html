@@ -184,57 +184,14 @@
       color: white;
       text-decoration: none;
     }
-
-    /* Botões flutuantes */
-    .contato-btn {
-      position: fixed;
-      top: 15px;
-      right: 15px;
-      width: 30px;
-      height: 30px;
-      background-color: #aed61e;
-      border-radius: 50%;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      z-index: 999;
-      transition: transform 0.3s ease;
-    }
-
-    .contato-btn.salvar {
-      right: 50px;
-    }
-
-    .contato-btn:hover {
-      transform: scale(1.1);
-    }
-
-    .contato-btn img {
-      width: 60%;
-      filter: invert(1);
-    }
   </style>
 </head>
-
 <body>
 
   <div class="fundo-fixo"></div>
 
-  <!-- Botão discar -->
-  <a class="contato-btn" href="tel:+5524999522320" title="Ligar">
-    <img src="https://cdn-icons-png.flaticon.com/512/455/455705.png" alt="Ligar">
-  </a>
-
-  <!-- Botão salvar contato -->
-  <a class="contato-btn salvar" href="contato.vcf" download title="Salvar Contato">
-    <img src="https://cdn-icons-png.flaticon.com/512/1828/1828817.png" alt="Salvar Contato">
-  </a>
-
   <img src="logo.png" alt="Logo 2h.Fitness" class="logo" />
   <h1>Transforme seu corpo,<br>transforme sua vida.</h1>
-
   <a href="https://www.instagram.com/2h_fitness" class="btn" target="_blank">Instagram</a>
   <a href="#" class="btn" onclick="copiarPix()">Copiar chave PIX</a>
   
@@ -242,7 +199,7 @@
     <p id="msgPix"></p>
     <span id="pixNumero">90349174-bd4e-4791-9580-ef12d35f621d</span>
   </div>
-
+  
   <a href="#" class="btn" onclick="toggleMapa()" id="botaoMapa">Localização</a>
   <div class="mapa-container">
     <iframe id="meuMapa"
@@ -250,20 +207,19 @@
       allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
     </iframe>
   </div>
-
   <a href="#" class="btn" onclick="toggleWifi()" id="botaoWifi">Wi-Fi</a>
+
   <div class="mapa-container" id="wifiContainer" style="display: none;">
+    <p><b>Rede:</b> FERABRAZNET HAPPY 91 | <b>Senha:</b> 81213116</p>
     <img src="qr_wifi_pb.jpg" alt="QR Code Wi-Fi" style="width: 100%; max-width: 300px; border-radius: 12px; box-shadow: 0 4px 12px rgba(174, 214, 30, 0.4);">
-    <p>Escaneie o QR Code para conectar na nossa rede Wi-Fi.</p>
+    <p>Conecte manualmente ou escaneie o QR Code.</p>
   </div>
-
   <a href="https://wa.me/5524999522320?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20serviços%20da%202h.Fitness." class="btn" target="_blank">Fale Conosco</a>
-
   <a href="https://venda.nextfit.com.br/1a95d0c7-60c3-48c9-b718-36f3d9e6704e/bemvindo" class="btn" target="_blank">
-    Faça seu Cadastro
+	  Faça seu Cadastro
   </a>
-
   <h3>Horário de funcionamento:</h3>
+
   <div class="horarios">
     <p><b>Segunda a Sexta:</b><br>5h às 12h | 14h às 21h</p>
     <p><b>Sábado:</b><br>8h30 às 14h</p>
@@ -285,8 +241,8 @@
     <a href="#img2"><img src="img2.jpeg" alt="Academia 2"></a>
     <a href="#img3"><img src="img3.jpeg" alt="Academia 3"></a>
     <a href="#img5"><img src="img5.jpeg" alt="Academia 5"></a>
-    <a href="#img4"><img src="img4.jpeg" alt="Academia 4"></a>
-    <a href="#img6"><img src="img6.jpeg" alt="Academia 6"></a>
+	<a href="#img4"><img src="img4.jpeg" alt="Academia 4"></a>
+	<a href="#img6"><img src="img6.jpeg" alt="Academia 6"></a>
   </div>
 
   <!-- Modais -->
@@ -298,36 +254,51 @@
   <div id="img6" class="modal"><a href="#" class="close">&times;</a><img src="img6.jpeg" /></div>
 
   <script>
+    // Efeito de clique nos botões
     const botoes = document.querySelectorAll('.btn');
+
     botoes.forEach(botao => {
-      botao.addEventListener('mousedown', () => botao.classList.add('ativo'));
-      botao.addEventListener('touchstart', () => botao.classList.add('ativo'));
-      botao.addEventListener('mouseup', () => botao.classList.remove('ativo'));
-      botao.addEventListener('mouseleave', () => botao.classList.remove('ativo'));
-      botao.addEventListener('touchend', () => botao.classList.remove('ativo'));
-      botao.addEventListener('touchcancel', () => botao.classList.remove('ativo'));
+      botao.addEventListener('mousedown', () => {
+        botao.classList.add('ativo');
+      });
+      botao.addEventListener('touchstart', () => {
+        botao.classList.add('ativo');
+      });
+
+      botao.addEventListener('mouseup', () => {
+        botao.classList.remove('ativo');
+      });
+      botao.addEventListener('mouseleave', () => {
+        botao.classList.remove('ativo');
+      });
+      botao.addEventListener('touchend', () => {
+        botao.classList.remove('ativo');
+      });
+      botao.addEventListener('touchcancel', () => {
+        botao.classList.remove('ativo');
+      });
     });
 
     function copiarPix() {
       const numeroPix = document.getElementById("pixNumero").innerText;
       navigator.clipboard.writeText(numeroPix).then(() => {
         document.getElementById("msgPix").innerHTML = "Chave Pix copiada com sucesso!";
-      }).catch(() => {
+      }).catch(err => {
         document.getElementById("msgPix").innerHTML = "Erro ao copiar Pix";
       });
     }
 
-    function toggleWifi() {
-      const wifi = document.getElementById("wifiContainer");
-      const botao = document.getElementById("botaoWifi");
-      if (wifi.style.display === "block") {
-        wifi.style.display = "none";
-        botao.innerText = "Wi-Fi";
-      } else {
-        wifi.style.display = "block";
-        botao.innerText = "Ocultar Wi-Fi";
-      }
-    }
+	function toggleWifi() {
+	  const wifi = document.getElementById("wifiContainer");
+	  const botao = document.getElementById("botaoWifi");
+	  if (wifi.style.display === "block") {
+		wifi.style.display = "none";
+		botao.innerText = "Wi-Fi";
+	  } else {
+		wifi.style.display = "block";
+		botao.innerText = "Ocultar Wi-Fi";
+	  }
+	}
 
     function toggleMapa() {
       const mapa = document.getElementById("meuMapa");
