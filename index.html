@@ -5,7 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>2h.Fitness - Cartão de Visita</title>
   <style>
-    /* Fundo */
+    * {
+      box-sizing: border-box;
+    }
+
     .fundo-fixo {
       position: fixed;
       top: 0;
@@ -22,10 +25,11 @@
     body {
       font-family: 'Segoe UI', sans-serif;
       text-align: center;
-      padding: 0 15px;
+      padding: 0px 15px;
       color: white;
       position: relative;
       z-index: 1;
+      margin: 0;
     }
 
     img.logo {
@@ -36,6 +40,7 @@
     h1, h3 {
       color: #aed61e;
       text-shadow: 0 0 6px rgba(174, 214, 30, 0.7);
+      margin: 10px 0;
     }
 
     h1 {
@@ -46,33 +51,65 @@
       font-size: 1.2em;
     }
 
-    .btn {
-      display: block;
-      margin: 15px auto;
-      padding: 15px;
-      border: none;
-      border-radius: 12px;
-      font-size: 18px;
-      font-weight: bold;
-      color: #fff;
-      width: 85%;
-      max-width: 340px;
-      background: linear-gradient(145deg, #0a0a0a, #aed61e, #0a0a0a);
-      box-shadow:
-        0 8px 20px rgba(0, 0, 0, 0.4),
-        0 4px 8px rgba(0, 0, 0, 0.3),
-        inset 0 2px 4px rgba(255, 255, 255, 0.3),
-        inset 0 -2px 4px rgba(0, 0, 0, 0.4);
-      transition: all 0.2s ease;
-      cursor: pointer;
-	  text-decoration: none;
+.btn {
+  display: block;
+  margin: 15px auto;
+  padding: 14px 20px;
+  border: 2px solid #aed61e;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #aed61e;
+  text-align: center;
+  text-decoration: none;
+  width: 85%;
+  max-width: 340px;
+  background: transparent;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  box-shadow:
+    0 0 4px #aed61e,
+    0 0 10px rgba(174, 214, 30, 0.4),
+    0 0 14px rgba(174, 214, 30, 0.3);
+  animation: neonPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes neonPulse {
+  0%, 100% {
+    box-shadow:
+      0 0 4px #aed61e,
+      0 0 10px rgba(174, 214, 30, 0.4),
+      0 0 14px rgba(174, 214, 30, 0.3);
+  }
+  50% {
+    box-shadow:
+      0 0 6px #aed61e,
+      0 0 14px rgba(174, 214, 30, 0.5),
+      0 0 20px rgba(174, 214, 30, 0.4);
+  }
+}
+
+.btn:hover {
+  background-color: rgba(174, 214, 30, 0.1);
+}
+
+.btn:active {
+  transform: translateY(2px) scale(0.98);
+}
+
+    .btn:hover {
+      background-color: rgba(174, 214, 30, 0.1);
+    }
+
+    .btn:active {
+      transform: translateY(2px) scale(0.98);
     }
 
     .qr-container {
       margin-top: 0px;
     }
-	
-	#pixNumero {
+
+    #pixNumero {
       display: none;
     }
 
@@ -82,7 +119,7 @@
     }
 
     .horarios p {
-      margin: 0;
+      margin: 0px;
       font-size: 1.1em;
       line-height: 1.5;
       color: white;
@@ -101,7 +138,7 @@
     .app-links img.store-btn {
       height: 55px;
       transition: transform 0.3s ease;
-      filter: drop-shadow(0 0 6px rgba(174, 214, 30, 0.6));
+      filter: drop-shadow(0px 0px 6px rgba(174, 214, 30, 0.6));
     }
 
     .app-links img.store-btn:hover {
@@ -109,7 +146,7 @@
     }
 
     .mapa-container {
-      margin: 0 auto;
+      margin: 0px auto 0;
       width: 90%;
       max-width: 500px;
       text-align: center;
@@ -123,10 +160,19 @@
       display: none;
     }
 
-    /* ----------------- Carrossel ----------------- */
+    .close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 32px;
+      color: white;
+      text-decoration: none;
+    }
+
+    /* Carrossel */
     .servico-container {
-      max-width: 380px;
-      margin: 20px auto;
+      max-width: 400px;
+      margin: 40px auto;
       border-radius: 18px;
       overflow: hidden;
       background: rgba(0,0,0,0.6);
@@ -134,19 +180,20 @@
       position: relative;
     }
 
-    .servico-info {
-      background: linear-gradient(145deg, #0a0a0a, #aed61e, #0a0a0a);
-      color: white;
-      padding: 15px 0;
-      position: absolute;
-      top: 0;
-      width: 100%;
-      border-radius: 18px 18px 0 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 2;
-    }
+	.servico-info {
+	  background: transparent;
+	  color: white;
+	  padding: 0px 0;
+	  position: absolute;
+	  top: 0;
+	  width: 100%;
+	  border-radius: 18px 18px 0 0;
+	  display: flex;
+	  flex-direction: column;
+	  justify-content: center;
+	  align-items: center;
+	  z-index: 2;
+	}
 
     .servico-info h2 {
       font-size: 1.2em;
@@ -154,22 +201,30 @@
       font-weight: bold;
     }
 
-    .carousel {
-      position: relative;
-      width: 100%;
-      overflow: hidden;
-	  padding-top: 20px;
-    }
+	.carousel {
+	  position: relative;
+	  width: 100%;
+	  overflow: hidden;
+	  border-radius: 18px 18px 0 0;
+	}
 
     .carousel-images {
       display: flex;
-      transition: transform 0.4s ease-in-out;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+    }
+
+    .carousel-images::-webkit-scrollbar {
+      display: none;
     }
 
     .carousel-images img {
       width: 100%;
       flex-shrink: 0;
       object-fit: cover;
+      scroll-snap-align: start;
     }
 
     .carousel-dots {
@@ -223,24 +278,23 @@
     .arrow-right {
       right: 10px;
     }
-    /* ---------------------------------------------------------- */
   </style>
 </head>
-
 <body>
 
   <div class="fundo-fixo"></div>
 
   <img src="logo.png" alt="Logo 2h.Fitness" class="logo" />
   <h1>Transforme seu corpo,<br>transforme sua vida.</h1>
+
   <a href="https://www.instagram.com/2h_fitness" class="btn" target="_blank">Instagram</a>
   <a href="#" class="btn" onclick="copiarPix()">Copiar chave PIX</a>
-  
+
   <div class="qr-container">
     <p id="msgPix"></p>
     <span id="pixNumero">90349174-bd4e-4791-9580-ef12d35f621d</span>
   </div>
-  
+
   <a href="#" class="btn" onclick="toggleMapa()" id="botaoMapa">Localização</a>
   <div class="mapa-container">
     <iframe id="meuMapa"
@@ -248,6 +302,7 @@
       allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
     </iframe>
   </div>
+
   <a href="#" class="btn" onclick="toggleWifi()" id="botaoWifi">Wi-Fi</a>
 
   <div class="mapa-container" id="wifiContainer" style="display: none;">
@@ -255,14 +310,16 @@
     <img src="qr_wifi_pb.jpg" alt="QR Code Wi-Fi" style="width: 100%; max-width: 300px; border-radius: 12px; box-shadow: 0 4px 12px rgba(174, 214, 30, 0.4);">
     <p>Conecte manualmente ou escaneie o QR Code.</p>
   </div>
+
   <a href="https://wa.me/5524999522320?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20serviços%20da%202h.Fitness." class="btn" target="_blank">Fale Conosco</a>
   <a href="https://venda.nextfit.com.br/1a95d0c7-60c3-48c9-b718-36f3d9e6704e/bemvindo" class="btn" target="_blank">
-	  Faça seu Cadastro
+    Faça seu Cadastro
   </a>
-  <h3>Horário de funcionamento:</h3>
 
+  <h3>Horário de funcionamento:</h3>
   <div class="horarios">
-    <p><b>Segunda a Sexta:</b><br>5h às 12h<br>14h às 21h<br><br><b>Sábado:</b><br>8h30 às 14h</p>
+    <p><b>Segunda a Sexta:</b><br>5h às 12h | 14h às 21h</p>
+    <p><b>Sábado:</b><br>8h30 às 14h</p>
   </div>
 
   <h3>Baixe nosso app:</h3>
@@ -276,11 +333,8 @@
   </div>
 
   <!-- Carrossel -->
+  <h3>Nosso espaço:</h3>
   <div class="servico-container">
-    <div class="servico-info">
-      <h2>CONHEÇA NOSSO ESPAÇO</h2>
-    </div>
-
     <div class="carousel">
       <button class="arrow arrow-left">&#10094;</button>
       <div class="carousel-images" id="carouselImages">
@@ -292,111 +346,125 @@
       </div>
       <button class="arrow arrow-right">&#10095;</button>
 
-      <div class="carousel-dots" id="carouselDots"></div>
+      <div class="carousel-dots" id="carouselDots">
+        <span class="active"></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </div>
   </div>
-  <!-- Fim Carrossel -->
+  <!-- Fim do Carrossel -->
 
-<script>
-  const carousel = document.getElementById('carouselImages');
-  const dotsContainer = document.getElementById('carouselDots');
-  const slides = carousel.querySelectorAll('img');
-  const leftBtn = document.querySelector('.arrow-left');
-  const rightBtn = document.querySelector('.arrow-right');
-  let currentIndex = 0;
+<footer style="margin-top: 40px; padding: 20px 10px; background: rgba(0, 0, 0, 0.7); border-radius: 12px; color: white; font-size: 0.9em;"> 
+<p><b>2H.Fitness Ltda</b> - Rua Teodora Barbosa Ribeiro, 367 - Arrozal, Piraí - RJ</p>
+<p>CNPJ: 41.582.034/0001-20</p>
+<p>&copy; 2025 - Todos os direitos reservados.</p>
+</footer>
 
-  function updateCarousel() {
-    carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
-    updateDots();
-  }
+  <script>
+    // Copiar Pix
+	function copiarPix() {
+	  const numeroPix = document.getElementById("pixNumero").innerText;
+	  const msgPix = document.getElementById("msgPix");
+	  
+	  navigator.clipboard.writeText(numeroPix).then(() => {
+		msgPix.innerHTML = "Chave Pix copiada com sucesso!";
+		clearTimeout(msgPix.timeout); // Limpa se já existir
+		msgPix.timeout = setTimeout(() => {
+		  msgPix.innerHTML = "";
+		}, 2500); // 2,5 segundos
+	  }).catch(() => {
+		msgPix.innerHTML = "Erro ao copiar Pix";
+		clearTimeout(msgPix.timeout);
+		msgPix.timeout = setTimeout(() => {
+		  msgPix.innerHTML = "";
+		}, 2500);
+	  });
+    }
 
-  function updateDots() {
-    dotsContainer.innerHTML = '';
-    slides.forEach((_, index) => {
-      const dot = document.createElement('span');
-      if (index === currentIndex) dot.classList.add('active');
-      dot.addEventListener('click', () => {
-        currentIndex = index;
-        updateCarousel();
+    // Mapa
+    function toggleMapa() {
+      const mapa = document.getElementById("meuMapa");
+      const botao = document.getElementById("botaoMapa");
+      if (mapa.style.display === "block") {
+        mapa.style.display = "none";
+        botao.innerText = "Localização";
+      } else {
+        mapa.style.display = "block";
+        botao.innerText = "Ocultar Localização";
+      }
+    }
+
+    // Wifi
+    function toggleWifi() {
+      const wifi = document.getElementById("wifiContainer");
+      const botao = document.getElementById("botaoWifi");
+      if (wifi.style.display === "block") {
+        wifi.style.display = "none";
+        botao.innerText = "Wi-Fi";
+      } else {
+        wifi.style.display = "block";
+        botao.innerText = "Ocultar Wi-Fi";
+      }
+    }
+
+    // Carrossel
+    const carousel = document.querySelector('.carousel-images');
+    const dots = document.querySelectorAll('.carousel-dots span');
+    const slides = document.querySelectorAll('.carousel-images img');
+    const prevButton = document.querySelector('.arrow-left');
+    const nextButton = document.querySelector('.arrow-right');
+
+    let slideWidth = carousel.clientWidth;
+
+    window.addEventListener('resize', () => {
+      slideWidth = carousel.clientWidth;
+    });
+
+    function updateDots(index) {
+      dots.forEach(dot => dot.classList.remove('active'));
+      if (dots[index]) dots[index].classList.add('active');
+    }
+
+    function goToSlide(index) {
+      carousel.scrollTo({
+        left: slideWidth * index,
+        behavior: 'smooth'
       });
-      dotsContainer.appendChild(dot);
+      updateDots(index);
+    }
+
+    function getCurrentIndex() {
+      return Math.round(carousel.scrollLeft / slideWidth);
+    }
+
+    dots.forEach((dot, idx) => {
+      dot.addEventListener('click', () => goToSlide(idx));
     });
-  }
 
-  rightBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex + 1) % slides.length;
-    updateCarousel();
-  });
-
-  leftBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-    updateCarousel();
-  });
-
-  // Swipe
-  let startX = 0;
-  let isDown = false;
-
-  carousel.addEventListener('touchstart', e => {
-    startX = e.touches[0].clientX;
-    isDown = true;
-  });
-
-  carousel.addEventListener('touchend', e => {
-    if (!isDown) return;
-    const endX = e.changedTouches[0].clientX;
-    handleSwipe(startX, endX);
-    isDown = false;
-  });
-
-  function handleSwipe(start, end) {
-    const distance = start - end;
-    if (distance > 50) {
-      currentIndex = (currentIndex + 1) % slides.length;
-      updateCarousel();
-    } else if (distance < -50) {
-      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-      updateCarousel();
-    }
-  }
-
-  updateCarousel();
-
-  // Outros
-  function toggleMapa() {
-    const mapa = document.getElementById("meuMapa");
-    const botao = document.getElementById("botaoMapa");
-    if (mapa.style.display === "block") {
-      mapa.style.display = "none";
-      botao.innerText = "Localização";
-    } else {
-      mapa.style.display = "block";
-      botao.innerText = "Ocultar Localização";
-    }
-  }
-
-  function toggleWifi() {
-    const wifi = document.getElementById("wifiContainer");
-    const botao = document.getElementById("botaoWifi");
-    if (wifi.style.display === "block") {
-      wifi.style.display = "none";
-      botao.innerText = "Wi-Fi";
-    } else {
-      wifi.style.display = "block";
-      botao.innerText = "Ocultar Wi-Fi";
-    }
-  }
-
-  function copiarPix() {
-    const texto = document.getElementById("pixNumero").innerText;
-    navigator.clipboard.writeText(texto).then(() => {
-      document.getElementById("msgPix").innerText = "Chave PIX copiada!";
-      setTimeout(() => {
-        document.getElementById("msgPix").innerText = "";
-      }, 2000);
+    prevButton.addEventListener('click', () => {
+      const index = getCurrentIndex();
+      const newIndex = Math.max(index - 1, 0);
+      goToSlide(newIndex);
     });
-  }
-</script>
+
+    nextButton.addEventListener('click', () => {
+      const index = getCurrentIndex();
+      const newIndex = Math.min(index + 1, slides.length - 1);
+      goToSlide(newIndex);
+    });
+
+    let isScrolling;
+    carousel.addEventListener('scroll', () => {
+      clearTimeout(isScrolling);
+      isScrolling = setTimeout(() => {
+        const index = getCurrentIndex();
+        updateDots(index);
+      }, 100);
+    });
+  </script>
 
 </body>
 </html>
