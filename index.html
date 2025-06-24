@@ -188,19 +188,17 @@
 	.carousel-images {
 	  display: flex;
 	  overflow-x: auto;
-	  scroll-snap-type: x mandatory;
 	  scroll-behavior: smooth;
-	  scrollbar-width: none; /* Firefox */
+	  scrollbar-width: none;
 	}
 
 	.carousel-images::-webkit-scrollbar {
-	  display: none; /* Chrome e Safari */
+	  display: none;
 	}
 
 	.carousel-images img {
 	  width: 100%;
 	  flex-shrink: 0;
-	  scroll-snap-align: start;
 	  object-fit: cover;
 	}
 
@@ -314,32 +312,39 @@
 
 	let slideWidth = carousel.clientWidth;
 
-	// Atualiza tamanho quando redimensiona janela
+	// Atualiza tamanho quando redimensiona a tela
 	window.addEventListener('resize', () => {
 	  slideWidth = carousel.clientWidth;
 	});
 
-	// Scroll automático das bolinhas ao arrastar
-	carousel.addEventListener('scroll', () => {
-	  const index = Math.round(carousel.scrollLeft / slideWidth);
-	  updateDots(index);
-	});
-
-	// Atualiza estado das bolinhas
+	// Atualiza bolinhas
 	function updateDots(index) {
 	  dots.forEach(dot => dot.classList.remove('active'));
 	  if (dots[index]) dots[index].classList.add('active');
 	}
 
+	// Faz o scroll até o slide alvo
+	function goToSlide(index) {
+	  carousel.scrollTo({
+		left: slideWidth * index,
+		behavior: 'smooth'
+	  });
+	  updateDots(index);
+	}
+
 	// Clique nas bolinhas
 	dots.forEach((dot, idx) => {
-	  dot.addEventListener('click', () => {
-		carousel.scrollTo({
-		  left: slideWidth * idx,
-		  behavior: 'smooth'
-		});
-		updateDots(idx);
-	  });
+	  dot.addEventListener('click', () => goToSlide(idx));
+	});
+
+	// Detecta o fim do scroll e trava na imagem mais próxima
+	let isScrolling;
+	carousel.addEventListener('scroll', () => {
+	  window.clearTimeout(isScrolling);
+	  isScrolling = setTimeout(() => {
+		const index = Math.round(carousel.scrollLeft / slideWidth);
+		goToSlide(index);
+	  }, 100);
 	});
 
 	// Arrastar com mouse
@@ -364,7 +369,7 @@
 	  carousel.scrollLeft = scrollLeft - walk;
 	});
 
-	// Arrastar com dedo (touch)
+	// Arrastar com touch (mobile)
 	carousel.addEventListener('touchstart', (e) => {
 	  startX = e.touches[0].pageX - carousel.offsetLeft;
 	  scrollLeft = carousel.scrollLeft;
@@ -375,31 +380,6 @@
 	  const walk = (x - startX) * 1.8;
 	  carousel.scrollLeft = scrollLeft - walk;
 	}, { passive: true });
-
-    // Efeito de clique nos botões
-    const botoes = document.querySelectorAll('.btn');
-
-    botoes.forEach(botao => {
-      botao.addEventListener('mousedown', () => {
-        botao.classList.add('ativo');
-      });
-      botao.addEventListener('touchstart', () => {
-        botao.classList.add('ativo');
-      });
-
-      botao.addEventListener('mouseup', () => {
-        botao.classList.remove('ativo');
-      });
-      botao.addEventListener('mouseleave', () => {
-        botao.classList.remove('ativo');
-      });
-      botao.addEventListener('touchend', () => {
-        botao.classList.remove('ativo');
-      });
-      botao.addEventListener('touchcancel', () => {
-        botao.classList.remove('ativo');
-      });
-    });
 
     function copiarPix() {
       const numeroPix = document.getElementById("pixNumero").innerText;
