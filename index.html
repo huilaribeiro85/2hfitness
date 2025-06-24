@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>2h.Fitness - Cartão de Visita</title>
   <style>
+    /* Fundo */
     .fundo-fixo {
       position: fixed;
       top: 0;
@@ -21,7 +22,7 @@
     body {
       font-family: 'Segoe UI', sans-serif;
       text-align: center;
-      padding: 0px 15px;
+      padding: 0 15px;
       color: white;
       position: relative;
       z-index: 1;
@@ -48,14 +49,12 @@
     .btn {
       display: block;
       margin: 15px auto;
-      padding: 15px 15px;
+      padding: 15px;
       border: none;
       border-radius: 12px;
       font-size: 18px;
       font-weight: bold;
       color: #fff;
-      text-align: center;
-      text-decoration: none;
       width: 85%;
       max-width: 340px;
       background: linear-gradient(145deg, #33c000, #6fd100, #aed61e, #d7f864);
@@ -66,22 +65,14 @@
         inset 0 -2px 4px rgba(0, 0, 0, 0.4);
       transition: all 0.2s ease;
       cursor: pointer;
-    }
-
-    .btn.ativo {
-      transform: translateY(-4px) scale(0.96);
-      box-shadow:
-        0 4px 12px rgba(0, 0, 0, 0.5),
-        0 2px 6px rgba(0, 0, 0, 0.35),
-        inset 0 1px 2px rgba(255, 255, 255, 0.4),
-        inset 0 -1px 2px rgba(0, 0, 0, 0.5);
+	  text-decoration: none;
     }
 
     .qr-container {
       margin-top: 0px;
     }
-
-    #pixNumero {
+	
+	#pixNumero {
       display: none;
     }
 
@@ -91,7 +82,7 @@
     }
 
     .horarios p {
-      margin: 0px;
+      margin: 0;
       font-size: 1.1em;
       line-height: 1.5;
       color: white;
@@ -110,7 +101,7 @@
     .app-links img.store-btn {
       height: 55px;
       transition: transform 0.3s ease;
-      filter: drop-shadow(0px 0px 6px rgba(174, 214, 30, 0.6));
+      filter: drop-shadow(0 0 6px rgba(174, 214, 30, 0.6));
     }
 
     .app-links img.store-btn:hover {
@@ -118,7 +109,7 @@
     }
 
     .mapa-container {
-      margin: 0px auto 0;
+      margin: 0 auto;
       width: 90%;
       max-width: 500px;
       text-align: center;
@@ -132,51 +123,35 @@
       display: none;
     }
 
-    .close {
-      position: absolute;
-      top: 20px;
-      right: 30px;
-      font-size: 32px;
-      color: white;
-      text-decoration: none;
-    }
-	   /* ----------------- Carrossel de Serviços ----------------- */
+    /* ----------------- Carrossel ----------------- */
     .servico-container {
       max-width: 380px;
       margin: 20px auto;
       border-radius: 18px;
       overflow: hidden;
       background: rgba(0,0,0,0.6);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.7);
       position: relative;
     }
 
     .servico-info {
-	  background: linear-gradient(145deg, #33c000, #6fd100, #aed61e, #d7f864);
-	  color: white;
-      padding: 15px 0px;
+      background: linear-gradient(145deg, #33c000, #6fd100, #aed61e, #d7f864);
+      color: white;
+      padding: 15px 0;
       position: absolute;
       top: 0;
       width: 100%;
       border-radius: 18px 18px 0 0;
       display: flex;
-      flex-direction: column;
-      gap: 6px;
-      z-index: 2;
-	  justify-content: center;
+      justify-content: center;
       align-items: center;
+      z-index: 2;
     }
 
     .servico-info h2 {
       font-size: 1.2em;
       margin: 0;
-      color: #fff;
       font-weight: bold;
-    }
-
-    .servico-info p {
-      margin: 0;
-      font-size: 0.9em;
     }
 
     .carousel {
@@ -185,29 +160,23 @@
       overflow: hidden;
     }
 
-	.carousel-images {
-	  display: flex;
-	  overflow-x: auto;
-	  scroll-behavior: smooth;
-	  scrollbar-width: none;
-	}
+    .carousel-images {
+      display: flex;
+      transition: transform 0.4s ease-in-out;
+    }
 
-	.carousel-images::-webkit-scrollbar {
-	  display: none;
-	}
-
-	.carousel-images img {
-	  width: 100%;
-	  flex-shrink: 0;
-	  object-fit: cover;
-	}
+    .carousel-images img {
+      width: 100%;
+      flex-shrink: 0;
+      object-fit: cover;
+    }
 
     .carousel-dots {
       position: absolute;
       bottom: 10px;
       width: 100%;
       text-align: center;
-      z-index: 2;
+      z-index: 3;
     }
 
     .carousel-dots span {
@@ -219,18 +188,44 @@
       border-radius: 50%;
       opacity: 0.5;
       cursor: pointer;
+      transition: 0.3s;
     }
 
     .carousel-dots .active {
       opacity: 1;
+      transform: scale(1.2);
     }
 
-}
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0,0,0,0.6);
+      border: none;
+      color: white;
+      font-size: 20px;
+      padding: 10px 14px;
+      cursor: pointer;
+      border-radius: 50%;
+      z-index: 3;
+      transition: background-color 0.3s;
+    }
 
+    .arrow:hover {
+      background-color: rgba(0,0,0,0.8);
+    }
+
+    .arrow-left {
+      left: 10px;
+    }
+
+    .arrow-right {
+      right: 10px;
+    }
     /* ---------------------------------------------------------- */
-	
   </style>
 </head>
+
 <body>
 
   <div class="fundo-fixo"></div>
@@ -266,8 +261,7 @@
   <h3>Horário de funcionamento:</h3>
 
   <div class="horarios">
-    <p><b>Segunda a Sexta:</b><br>5h às 12h | 14h às 21h</p>
-    <p><b>Sábado:</b><br>8h30 às 14h</p>
+    <p><b>Segunda a Sexta:</b><br>5h às 12h<br>14h às 21h<br><br><b>Sábado:</b><br>8h30 às 14h</p>
   </div>
 
   <h3>Baixe nosso app:</h3>
@@ -279,141 +273,129 @@
       <img src="appstore.png" alt="Baixar na App Store" class="store-btn" />
     </a>
   </div>
-  
-    <!-- Carrossel de Serviço -->
+
+  <!-- Carrossel -->
   <div class="servico-container">
     <div class="servico-info">
       <h2>CONHEÇA NOSSO ESPAÇO</h2>
     </div>
+
     <div class="carousel">
+      <button class="arrow arrow-left">&#10094;</button>
       <div class="carousel-images" id="carouselImages">
-        <img src="img1.jpeg" alt="Corte 1">
-        <img src="img2.jpeg" alt="Corte 2">
-        <img src="img3.jpeg" alt="Corte 3">
-		<img src="img5.jpeg" alt="Corte 4">
-		<img src="img4.jpeg" alt="Corte 5">
+        <img src="img1.jpeg" alt="Imagem 1">
+        <img src="img2.jpeg" alt="Imagem 2">
+        <img src="img3.jpeg" alt="Imagem 3">
+        <img src="img4.jpeg" alt="Imagem 4">
+        <img src="img5.jpeg" alt="Imagem 5">
       </div>
-      <div class="carousel-dots" id="carouselDots">
-        <span class="active"></span>
-        <span></span>
-        <span></span>
-		<span></span>
-		<span></span>
-      </div>
+      <button class="arrow arrow-right">&#10095;</button>
+
+      <div class="carousel-dots" id="carouselDots"></div>
     </div>
   </div>
-  <!-- Fim do Carrossel -->
+  <!-- Fim Carrossel -->
 
-  <script>
-    // Carrossel
-    const carousel = document.querySelector('.carousel-images');
-	const dots = document.querySelectorAll('.carousel-dots span');
-	const slides = document.querySelectorAll('.carousel-images img');
+<script>
+  const carousel = document.getElementById('carouselImages');
+  const dotsContainer = document.getElementById('carouselDots');
+  const slides = carousel.querySelectorAll('img');
+  const leftBtn = document.querySelector('.arrow-left');
+  const rightBtn = document.querySelector('.arrow-right');
+  let currentIndex = 0;
 
-	let slideWidth = carousel.clientWidth;
+  function updateCarousel() {
+    carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+    updateDots();
+  }
 
-	// Atualiza tamanho quando redimensiona a tela
-	window.addEventListener('resize', () => {
-	  slideWidth = carousel.clientWidth;
-	});
-
-	// Atualiza bolinhas
-	function updateDots(index) {
-	  dots.forEach(dot => dot.classList.remove('active'));
-	  if (dots[index]) dots[index].classList.add('active');
-	}
-
-	// Faz o scroll até o slide alvo
-	function goToSlide(index) {
-	  carousel.scrollTo({
-		left: slideWidth * index,
-		behavior: 'smooth'
-	  });
-	  updateDots(index);
-	}
-
-	// Clique nas bolinhas
-	dots.forEach((dot, idx) => {
-	  dot.addEventListener('click', () => goToSlide(idx));
-	});
-
-	// Detecta o fim do scroll e trava na imagem mais próxima
-	let isScrolling;
-	carousel.addEventListener('scroll', () => {
-	  window.clearTimeout(isScrolling);
-	  isScrolling = setTimeout(() => {
-		const index = Math.round(carousel.scrollLeft / slideWidth);
-		goToSlide(index);
-	  }, 100);
-	});
-
-	// Arrastar com mouse
-	let isDown = false;
-	let startX;
-	let scrollLeft;
-
-	carousel.addEventListener('mousedown', (e) => {
-	  isDown = true;
-	  startX = e.pageX - carousel.offsetLeft;
-	  scrollLeft = carousel.scrollLeft;
-	});
-
-	carousel.addEventListener('mouseleave', () => isDown = false);
-	carousel.addEventListener('mouseup', () => isDown = false);
-
-	carousel.addEventListener('mousemove', (e) => {
-	  if (!isDown) return;
-	  e.preventDefault();
-	  const x = e.pageX - carousel.offsetLeft;
-	  const walk = (x - startX) * 1.8;
-	  carousel.scrollLeft = scrollLeft - walk;
-	});
-
-	// Arrastar com touch (mobile)
-	carousel.addEventListener('touchstart', (e) => {
-	  startX = e.touches[0].pageX - carousel.offsetLeft;
-	  scrollLeft = carousel.scrollLeft;
-	}, { passive: true });
-
-	carousel.addEventListener('touchmove', (e) => {
-	  const x = e.touches[0].pageX - carousel.offsetLeft;
-	  const walk = (x - startX) * 1.8;
-	  carousel.scrollLeft = scrollLeft - walk;
-	}, { passive: true });
-
-    function copiarPix() {
-      const numeroPix = document.getElementById("pixNumero").innerText;
-      navigator.clipboard.writeText(numeroPix).then(() => {
-        document.getElementById("msgPix").innerHTML = "Chave Pix copiada com sucesso!";
-      }).catch(err => {
-        document.getElementById("msgPix").innerHTML = "Erro ao copiar Pix";
+  function updateDots() {
+    dotsContainer.innerHTML = '';
+    slides.forEach((_, index) => {
+      const dot = document.createElement('span');
+      if (index === currentIndex) dot.classList.add('active');
+      dot.addEventListener('click', () => {
+        currentIndex = index;
+        updateCarousel();
       });
-    }
+      dotsContainer.appendChild(dot);
+    });
+  }
 
-	function toggleWifi() {
-	  const wifi = document.getElementById("wifiContainer");
-	  const botao = document.getElementById("botaoWifi");
-	  if (wifi.style.display === "block") {
-		wifi.style.display = "none";
-		botao.innerText = "Wi-Fi";
-	  } else {
-		wifi.style.display = "block";
-		botao.innerText = "Ocultar Wi-Fi";
-	  }
-	}
+  rightBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % slides.length;
+    updateCarousel();
+  });
 
-    function toggleMapa() {
-      const mapa = document.getElementById("meuMapa");
-      const botao = document.getElementById("botaoMapa");
-      if (mapa.style.display === "block") {
-        mapa.style.display = "none";
-        botao.innerText = "Localização";
-      } else {
-        mapa.style.display = "block";
-        botao.innerText = "Ocultar Localização";
-      }
+  leftBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+    updateCarousel();
+  });
+
+  // Swipe
+  let startX = 0;
+  let isDown = false;
+
+  carousel.addEventListener('touchstart', e => {
+    startX = e.touches[0].clientX;
+    isDown = true;
+  });
+
+  carousel.addEventListener('touchend', e => {
+    if (!isDown) return;
+    const endX = e.changedTouches[0].clientX;
+    handleSwipe(startX, endX);
+    isDown = false;
+  });
+
+  function handleSwipe(start, end) {
+    const distance = start - end;
+    if (distance > 50) {
+      currentIndex = (currentIndex + 1) % slides.length;
+      updateCarousel();
+    } else if (distance < -50) {
+      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+      updateCarousel();
     }
-  </script>
+  }
+
+  updateCarousel();
+
+  // Outros
+  function toggleMapa() {
+    const mapa = document.getElementById("meuMapa");
+    const botao = document.getElementById("botaoMapa");
+    if (mapa.style.display === "block") {
+      mapa.style.display = "none";
+      botao.innerText = "Localização";
+    } else {
+      mapa.style.display = "block";
+      botao.innerText = "Ocultar Localização";
+    }
+  }
+
+  function toggleWifi() {
+    const wifi = document.getElementById("wifiContainer");
+    const botao = document.getElementById("botaoWifi");
+    if (wifi.style.display === "block") {
+      wifi.style.display = "none";
+      botao.innerText = "Wi-Fi";
+    } else {
+      wifi.style.display = "block";
+      botao.innerText = "Ocultar Wi-Fi";
+    }
+  }
+
+  function copiarPix() {
+    const texto = document.getElementById("pixNumero").innerText;
+    navigator.clipboard.writeText(texto).then(() => {
+      document.getElementById("msgPix").innerText = "Chave PIX copiada!";
+      setTimeout(() => {
+        document.getElementById("msgPix").innerText = "";
+      }, 3000);
+    });
+  }
+</script>
 
 </body>
 </html>
