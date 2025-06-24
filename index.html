@@ -185,10 +185,12 @@
       overflow: hidden;
     }
 
-    .carousel-images {
-      display: flex;
-      transition: transform 0.5s ease-in-out;
-    }
+	.carousel-images {
+	  display: flex;
+	  overflow-x: auto;
+	  scroll-behavior: smooth;
+	  scrollbar-width: none;
+	}
 
     .carousel-images img {
       width: 100%;
@@ -218,6 +220,9 @@
     .carousel-dots .active {
       opacity: 1;
     }
+
+}
+
     /* ---------------------------------------------------------- */
 	
   </style>
@@ -297,26 +302,74 @@
 
   <script>
     // Carrossel
-    const images = document.getElementById('carouselImages');
-    const dots = document.getElementById('carouselDots').children;
-    let index = 0;
+    const carousel = document.querySelector('.carousel-images');
+	const dots = document.querySelectorAll('.carousel-dots span');
+	const slides = document.querySelectorAll('.carousel-images img');
 
-    function showSlide(i) {
-      index = i;
-      images.style.transform = `translateX(-${i * 100}%)`;
-      for (let dot of dots) dot.classList.remove('active');
-      dots[i].classList.add('active');
-    }
+	let slideWidth = carousel.clientWidth;
 
-    for (let j = 0; j < dots.length; j++) {
-      dots[j].addEventListener('click', () => showSlide(j));
-    }
+	// Atualiza tamanho quando redimensiona janela
+	window.addEventListener('resize', () => {
+	  slideWidth = carousel.clientWidth;
+	});
 
-    setInterval(() => {
-      index = (index + 1) % dots.length;
-      showSlide(index);
-    }, 5000);
-  
+	// Scroll automático das bolinhas ao arrastar
+	carousel.addEventListener('scroll', () => {
+	  const index = Math.round(carousel.scrollLeft / slideWidth);
+	  updateDots(index);
+	});
+
+	// Atualiza estado das bolinhas
+	function updateDots(index) {
+	  dots.forEach(dot => dot.classList.remove('active'));
+	  if (dots[index]) dots[index].classList.add('active');
+	}
+
+	// Clique nas bolinhas
+	dots.forEach((dot, idx) => {
+	  dot.addEventListener('click', () => {
+		carousel.scrollTo({
+		  left: slideWidth * idx,
+		  behavior: 'smooth'
+		});
+		updateDots(idx);
+	  });
+	});
+
+	// Arrastar com mouse
+	let isDown = false;
+	let startX;
+	let scrollLeft;
+
+	carousel.addEventListener('mousedown', (e) => {
+	  isDown = true;
+	  startX = e.pageX - carousel.offsetLeft;
+	  scrollLeft = carousel.scrollLeft;
+	});
+
+	carousel.addEventListener('mouseleave', () => isDown = false);
+	carousel.addEventListener('mouseup', () => isDown = false);
+
+	carousel.addEventListener('mousemove', (e) => {
+	  if (!isDown) return;
+	  e.preventDefault();
+	  const x = e.pageX - carousel.offsetLeft;
+	  const walk = (x - startX) * 1.8;
+	  carousel.scrollLeft = scrollLeft - walk;
+	});
+
+	// Arrastar com dedo (touch)
+	carousel.addEventListener('touchstart', (e) => {
+	  startX = e.touches[0].pageX - carousel.offsetLeft;
+	  scrollLeft = carousel.scrollLeft;
+	}, { passive: true });
+
+	carousel.addEventListener('touchmove', (e) => {
+	  const x = e.touches[0].pageX - carousel.offsetLeft;
+	  const walk = (x - startX) * 1.8;
+	  carousel.scrollLeft = scrollLeft - walk;
+	}, { passive: true });
+
     // Efeito de clique nos botões
     const botoes = document.querySelectorAll('.btn');
 
