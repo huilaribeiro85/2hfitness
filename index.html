@@ -5,53 +5,108 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>2h.Fitness - Cartão de Visita</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    .fundo-fixo {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: 
+        linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.9)),
+        url('fundo.JPG') no-repeat center center;
+      background-size: cover;
+      z-index: -1;
+    }
+
     body {
       font-family: 'Segoe UI', sans-serif;
       text-align: center;
-      padding: 30px 15px;
-      background: linear-gradient(180deg, #000000 0%, #101e0a 100%);
-      color: #aed61e;
-      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+      padding: 0px 15px;
+      color: white;
+      position: relative;
+      z-index: 1;
+      margin: 0;
     }
 
     img.logo {
-      max-width: 250px;
-      filter: drop-shadow(0px 0px 5px #8bc34a);
+      max-width: 240px;
+      filter: drop-shadow(0px 0px 10px #aed61e);
+    }
+
+    h1, h3 {
+      color: #aed61e;
+      text-shadow: 0 0 6px rgba(174, 214, 30, 0.7);
+      margin: 10px 0;
     }
 
     h1 {
-      margin-bottom: 40px;
-      font-size: 1.6em;
-      color: #aed61e;
-      font-weight: small;
-      text-shadow: 0 0 8px #5a9135;
+      font-size: 1.5em;
     }
 
-    .btn {
-      display: block;
-      margin: 15px auto;
-      padding: 16px 28px;
-      border: none;
-      border-radius: 20px;
-      font-size: 18px;
-      font-weight: bold;
-      background-color: #aed61e;
-      color: #000;
-      text-decoration: none;
-      width: 85%;
-      max-width: 340px;
-      box-shadow: 0 4px 12px rgba(139, 195, 74, 0.4);
-      transition: all 0.3s ease;
+    h3 {
+      font-size: 1.2em;
     }
+
+.btn {
+  display: block;
+  margin: 15px auto;
+  padding: 14px 20px;
+  border: 2px solid #aed61e;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #aed61e;
+  text-align: center;
+  text-decoration: none;
+  width: 85%;
+  max-width: 340px;
+  background: transparent;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  box-shadow:
+    0 0 4px #aed61e,
+    0 0 10px rgba(174, 214, 30, 0.4),
+    0 0 14px rgba(174, 214, 30, 0.3);
+  animation: neonPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes neonPulse {
+  0%, 100% {
+    box-shadow:
+      0 0 4px #aed61e,
+      0 0 10px rgba(174, 214, 30, 0.4),
+      0 0 14px rgba(174, 214, 30, 0.3);
+  }
+  50% {
+    box-shadow:
+      0 0 6px #aed61e,
+      0 0 14px rgba(174, 214, 30, 0.5),
+      0 0 20px rgba(174, 214, 30, 0.4);
+  }
+}
+
+.btn:hover {
+  background-color: rgba(174, 214, 30, 0.1);
+}
+
+.btn:active {
+  transform: translateY(2px) scale(0.98);
+}
 
     .btn:hover {
-      background-color: #a8e063;
-      transform: translateY(-2px) scale(1.02);
-      box-shadow: 0 6px 18px rgba(139, 195, 74, 0.6);
+      background-color: rgba(174, 214, 30, 0.1);
+    }
+
+    .btn:active {
+      transform: translateY(2px) scale(0.98);
     }
 
     .qr-container {
-      margin-top: 20px;
+      margin-top: 0px;
     }
 
     #pixNumero {
@@ -59,155 +114,366 @@
     }
 
     #msgPix {
-      margin-top: 10px;
       font-size: 1rem;
       color: #aed61e;
     }
 
-    .horarios {
-      margin-top: 30px;
+    .horarios p {
+      margin: 0px;
       font-size: 1.1em;
       line-height: 1.5;
+      color: white;
     }
 
-    .galeria {
-      margin-top: 40px;
+    .app-links {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 15px;
-      padding: 10px;
     }
 
-    .galeria img {
-      width: 90%;
-      max-width: 360px;
-      border-radius: 10px;
-      cursor: pointer;
+    .app-links a {
+      margin: 10px 0;
+    }
+
+    .app-links img.store-btn {
+      height: 55px;
       transition: transform 0.3s ease;
+      filter: drop-shadow(0px 0px 6px rgba(174, 214, 30, 0.6));
     }
 
-    .galeria img:hover {
-      transform: scale(1.03);
+    .app-links img.store-btn:hover {
+      transform: scale(1.08);
     }
 
-    .modal {
+    .mapa-container {
+      margin: 0px auto 0;
+      width: 90%;
+      max-width: 500px;
+      text-align: center;
+    }
+
+    .mapa-container iframe {
+      border: 0;
+      border-radius: 12px;
+      width: 100%;
+      height: 300px;
       display: none;
-      position: fixed;
-      z-index: 999;
-      left: 0;
-      top: 0;
-      width: 100vw;
-      height: 100vh;
-      background-color: rgba(0, 0, 0, 0.9);
-      justify-content: center;
-      align-items: center;
-    }
-
-    .modal img {
-      max-width: 90vw;
-      max-height: 90vh;
-      border-radius: 10px;
-    }
-
-    .modal:target {
-      display: flex;
     }
 
     .close {
       position: absolute;
       top: 20px;
       right: 30px;
-      font-size: 30px;
-      color: #fff;
+      font-size: 32px;
+      color: white;
       text-decoration: none;
     }
 
-    /* Estilo para os botões da loja (sem borda arredondada) */
-    .download-app {
-      margin-top: 30px;
+    /* Carrossel */
+    .servico-container {
+      max-width: 400px;
+      margin: 0px auto;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.7);
+      position: relative;
     }
 
-    .download-app h3 {
-      color: #aed61e;
-      margin-bottom: 15px;
+	.servico-info {
+	  background: transparent;
+	  color: white;
+	  padding: 0px 0;
+	  position: absolute;
+	  top: 0;
+	  width: 100%;
+	  border-radius: 18px 18px 0 0;
+	  display: flex;
+	  flex-direction: column;
+	  justify-content: center;
+	  align-items: center;
+	  z-index: 2;
+	}
+
+    .servico-info h2 {
+      font-size: 1.2em;
+      margin: 0;
+      font-weight: bold;
     }
 
-    .store-button {
-      width: 180px;
-      margin: 10px;
-      /* Borda arredondada removida */
-      box-shadow: 0 4px 12px rgba(139, 195, 74, 0.4);
-      transition: all 0.3s ease;
+	.carousel {
+	  position: relative;
+	  width: 100%;
+	  overflow: hidden;
+	  border-radius: 18px 18px 0 0;
+	}
+
+    .carousel-images {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+    }
+
+    .carousel-images::-webkit-scrollbar {
+      display: none;
+    }
+
+    .carousel-images img {
+      width: 100%;
+      flex-shrink: 0;
+      object-fit: cover;
+      scroll-snap-align: start;
+    }
+
+    .carousel-dots {
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
+      text-align: center;
+      z-index: 3;
+    }
+
+    .carousel-dots span {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      margin: 0 4px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.5;
       cursor: pointer;
+      transition: 0.3s;
     }
 
-    .store-button:hover {
-      transform: translateY(-3px) scale(1.03);
-      box-shadow: 0 6px 18px rgba(139, 195, 74, 0.6);
+    .carousel-dots .active {
+      opacity: 1;
+      transform: scale(1.2);
     }
+
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0,0,0,0.6);
+      border: none;
+      color: white;
+      font-size: 20px;
+      padding: 10px 14px;
+      cursor: pointer;
+      border-radius: 50%;
+      z-index: 3;
+      transition: background-color 0.3s;
+    }
+
+    .arrow:hover {
+      background-color: rgba(0,0,0,0.8);
+    }
+
+    .arrow-left {
+      left: 10px;
+    }
+
+    .arrow-right {
+      right: 10px;
+    }
+	
+	footer {
+	  margin-top: 20px;
+      text-align: center;
+      background: rgba(73, 77, 47, 0.7);
+      padding: 20px;
+      color: white;
+      font-size: 14px;
+    }
+	
   </style>
 </head>
 <body>
 
+  <div class="fundo-fixo"></div>
+
   <img src="logo.png" alt="Logo 2h.Fitness" class="logo" />
-  <h1>ONDE SEUS LIMITES SÃO SUPERADOS</h1>
+  <h1>Transforme seu corpo,<br>transforme sua vida.</h1>
 
-  <a href="https://www.instagram.com/2h_fitness?igsh=aGthcmRxemNrbmh5" class="btn" target="_blank">Instagram</a>
-
-  <a href="https://wa.me/5524999522320?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20serviços%20da%202h.Fitness." class="btn" target="_blank">WhatsApp</a>
-
-  <a href="#" class="btn" onclick="copiarPix()">Pix</a>
+  <a href="https://www.instagram.com/2h_fitness" class="btn" target="_blank">Instagram</a>
+  <a href="#" class="btn" onclick="copiarPix()">Copiar chave PIX</a>
 
   <div class="qr-container">
     <p id="msgPix"></p>
-    <span id="pixNumero">00020126360014BR.GOV.BCB.PIX0114+55249995223205204000053039865802BR5925Huila Machado de Lima Rib6009SAO PAULO62140510sm9hLC3XlL63047C8E</span>
+    <span id="pixNumero">90349174-bd4e-4791-9580-ef12d35f621d</span>
   </div>
 
-  <!-- Botões para download dos apps -->
-  <div class="download-app">
-    <h3>Baixe nosso App:</h3>
-
-    <a href="https://play.google.com/store/apps/details?id=br.com.fitastic.appaluno&hl=pt_BR&pli=1" target="_blank">
-      <img src="playstore.png" alt="Baixar na Play Store" class="store-button">
-    </a>
-
-    <a href="https://apps.apple.com/br/app/next-fit/id1360859531" target="_blank">
-      <img src="appstore.png" alt="Baixar na App Store" class="store-button">
-    </a>
+  <a href="#" class="btn" onclick="toggleMapa()" id="botaoMapa">Localização</a>
+  <div class="mapa-container">
+    <iframe id="meuMapa"
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3675.628287102922!2d-43.88118462572556!3d-22.89169013785696!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9970bc2906ebf7%3A0x8c0628dc72a87d26!2sR.%20Teodora%20Barbosa%20Ribeiro%2C%20367%20-%20Arrozal%2C%20Pira%C3%AD%20-%20RJ%2C%2027185-000!5e0!3m2!1spt-BR!2sbr!4v1718797795602!5m2!1spt-BR!2sbr"
+      allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
   </div>
 
+  <a href="#" class="btn" onclick="toggleWifi()" id="botaoWifi">Wi-Fi</a>
+
+  <div class="mapa-container" id="wifiContainer" style="display: none;">
+    <p><b>Rede:</b> FERABRAZNET HAPPY 91 | <b>Senha:</b> 81213116</p>
+    <img src="qr_wifi_pb.jpg" alt="QR Code Wi-Fi" style="width: 100%; max-width: 300px; border-radius: 12px; box-shadow: 0 4px 12px rgba(174, 214, 30, 0.4);">
+    <p>Conecte manualmente ou escaneie o QR Code.</p>
+  </div>
+
+  <a href="https://wa.me/5524999522320?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20serviços%20da%202h.Fitness." class="btn" target="_blank">Fale Conosco</a>
+  <a href="https://venda.nextfit.com.br/1a95d0c7-60c3-48c9-b718-36f3d9e6704e/bemvindo" class="btn" target="_blank">
+    Faça seu Cadastro
+  </a>
+
+  <h3>Horário de funcionamento:</h3>
   <div class="horarios">
-    <h3>Horário de Funcionamento:</h3>
-    <p>Segunda a Sexta: 5h às 12h e 14h às 21h<br>Sábado: 8h30 às 14h</p>
+    <p><b>Segunda a Sexta:</b><br>5h às 12h | 14h às 21h</p>
+    <p><b>Sábado:</b><br>8h30 às 14h</p>
   </div>
 
-  <div class="galeria">
-    <a href="#img1"><img src="img1.jpeg" alt="Academia 1"></a>
-    <a href="#img2"><img src="img2.jpeg" alt="Academia 2"></a>
-    <a href="#img3"><img src="img3.jpeg" alt="Academia 3"></a>
-    <a href="#img4"><img src="img4.jpeg" alt="Academia 4"></a>
-    <a href="#img5"><img src="img5.jpeg" alt="Academia 5"></a>
-    <a href="#img6"><img src="img6.jpeg" alt="Academia 6"></a>
+  <h3>Baixe nosso app:</h3>
+  <div class="app-links">
+    <a href="https://play.google.com/store/apps/details?id=br.com.fitastic.appaluno" target="_blank">
+      <img src="playstore.png" alt="Baixar no Google Play" class="store-btn" />
+    </a>
+    <a href="https://apps.apple.com/br/app/next-fit/id1360859531" target="_blank">
+      <img src="appstore.png" alt="Baixar na App Store" class="store-btn" />
+    </a>
   </div>
 
-  <!-- Modais -->
-  <div id="img1" class="modal"><a href="#" class="close">&times;</a><img src="img1.jpeg" /></div>
-  <div id="img2" class="modal"><a href="#" class="close">&times;</a><img src="img2.jpeg" /></div>
-  <div id="img3" class="modal"><a href="#" class="close">&times;</a><img src="img3.jpeg" /></div>
-  <div id="img4" class="modal"><a href="#" class="close">&times;</a><img src="img4.jpeg" /></div>
-  <div id="img5" class="modal"><a href="#" class="close">&times;</a><img src="img5.jpeg" /></div>
-  <div id="img6" class="modal"><a href="#" class="close">&times;</a><img src="img6.jpeg" /></div>
+  <!-- Carrossel -->
+  
+  <div class="servico-container">
+  <h1>Nosso espaço:</h1>
+    <div class="carousel">
+      <button class="arrow arrow-left">&#10094;</button>
+      <div class="carousel-images" id="carouselImages">
+        <img src="img1.jpeg" alt="Imagem 1">
+        <img src="img2.jpeg" alt="Imagem 2">
+        <img src="img3.jpeg" alt="Imagem 3">
+        <img src="img4.jpeg" alt="Imagem 4">
+        <img src="img5.jpeg" alt="Imagem 5">
+      </div>
+      <button class="arrow arrow-right">&#10095;</button>
+
+      <div class="carousel-dots" id="carouselDots">
+        <span class="active"></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+  <!-- Fim do Carrossel -->
+
+<footer>
+  <p><b>2H.Fitness Ltda</b> - Rua Teodora Barbosa Ribeiro, 367 - Arrozal, Piraí - RJ</p>
+  <p>CNPJ: 61.202.754/0001-19</p>
+  <p>&copy; 2025 - Todos os direitos reservados.</p>
+</footer>
 
   <script>
-    function copiarPix() {
-      const numeroPix = document.getElementById("pixNumero").innerText;
-      navigator.clipboard.writeText(numeroPix).then(() => {
-        document.getElementById("msgPix").innerHTML = "📋 Chave Pix copiada com sucesso!";
-      }).catch(err => {
-        document.getElementById("msgPix").innerHTML = "Erro ao copiar Pix 😢";
-      });
+    // Copiar Pix
+	function copiarPix() {
+	  const numeroPix = document.getElementById("pixNumero").innerText;
+	  const msgPix = document.getElementById("msgPix");
+	  
+	  navigator.clipboard.writeText(numeroPix).then(() => {
+		msgPix.innerHTML = "Chave Pix copiada com sucesso!";
+		clearTimeout(msgPix.timeout); // Limpa se já existir
+		msgPix.timeout = setTimeout(() => {
+		  msgPix.innerHTML = "";
+		}, 2500); // 2,5 segundos
+	  }).catch(() => {
+		msgPix.innerHTML = "Erro ao copiar Pix";
+		clearTimeout(msgPix.timeout);
+		msgPix.timeout = setTimeout(() => {
+		  msgPix.innerHTML = "";
+		}, 2500);
+	  });
     }
+
+    // Mapa
+    function toggleMapa() {
+      const mapa = document.getElementById("meuMapa");
+      const botao = document.getElementById("botaoMapa");
+      if (mapa.style.display === "block") {
+        mapa.style.display = "none";
+        botao.innerText = "Localização";
+      } else {
+        mapa.style.display = "block";
+        botao.innerText = "Ocultar Localização";
+      }
+    }
+
+    // Wifi
+    function toggleWifi() {
+      const wifi = document.getElementById("wifiContainer");
+      const botao = document.getElementById("botaoWifi");
+      if (wifi.style.display === "block") {
+        wifi.style.display = "none";
+        botao.innerText = "Wi-Fi";
+      } else {
+        wifi.style.display = "block";
+        botao.innerText = "Ocultar Wi-Fi";
+      }
+    }
+
+    // Carrossel
+    const carousel = document.querySelector('.carousel-images');
+    const dots = document.querySelectorAll('.carousel-dots span');
+    const slides = document.querySelectorAll('.carousel-images img');
+    const prevButton = document.querySelector('.arrow-left');
+    const nextButton = document.querySelector('.arrow-right');
+
+    let slideWidth = carousel.clientWidth;
+
+    window.addEventListener('resize', () => {
+      slideWidth = carousel.clientWidth;
+    });
+
+    function updateDots(index) {
+      dots.forEach(dot => dot.classList.remove('active'));
+      if (dots[index]) dots[index].classList.add('active');
+    }
+
+    function goToSlide(index) {
+      carousel.scrollTo({
+        left: slideWidth * index,
+        behavior: 'smooth'
+      });
+      updateDots(index);
+    }
+
+    function getCurrentIndex() {
+      return Math.round(carousel.scrollLeft / slideWidth);
+    }
+
+    dots.forEach((dot, idx) => {
+      dot.addEventListener('click', () => goToSlide(idx));
+    });
+
+    prevButton.addEventListener('click', () => {
+      const index = getCurrentIndex();
+      const newIndex = Math.max(index - 1, 0);
+      goToSlide(newIndex);
+    });
+
+    nextButton.addEventListener('click', () => {
+      const index = getCurrentIndex();
+      const newIndex = Math.min(index + 1, slides.length - 1);
+      goToSlide(newIndex);
+    });
+
+    let isScrolling;
+    carousel.addEventListener('scroll', () => {
+      clearTimeout(isScrolling);
+      isScrolling = setTimeout(() => {
+        const index = getCurrentIndex();
+        updateDots(index);
+      }, 100);
+    });
   </script>
 
 </body>
